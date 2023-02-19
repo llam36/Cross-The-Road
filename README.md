@@ -1,2 +1,2 @@
 # Cross The Road project
-# Group 45
+Group 45
