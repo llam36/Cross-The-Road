@@ -1,1 +1,2 @@
-# Sprint-2
+# Cross The Road project
+# Group 45
