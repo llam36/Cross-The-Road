@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Map gameMap = new Map();
         Road road = new Road();
         River river = new River();
-        gameMap.lanes = new Lane[] {road, road, road, river, river, road, road, road, river, road};
+        SafeTile safeTile = new SafeTile();
+        GoalTile goalTile = new GoalTile();
+        gameMap.lanes = new Lane[] {goalTile, road, road, safeTile, river, river, river, safeTile, road, safeTile};
         MapDisplayAdapter adapter = new MapDisplayAdapter(this, gameMap.lanes);
         
         GVLanesMap.setAdapter(adapter);

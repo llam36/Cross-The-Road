@@ -35,6 +35,12 @@ public class MapDisplayAdapter extends ArrayAdapter<Lane> {
             case "road":
                 laneIVSrc = R.drawable.road;
                 break;
+            case "safe tile":
+                laneIVSrc = R.drawable.safe_tile;
+                break;
+            case "goal tile":
+                laneIVSrc = R.drawable.goal_tile;
+                break;
             default:
                 laneIVSrc = 0;
                 break;
