@@ -7,23 +7,24 @@ import android.widget.GridView;
 
 public class MainActivity extends AppCompatActivity {
 
-    GridView GVLanesMap;
+    private GridView gvLanesMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GVLanesMap = findViewById(R.id.idGVLanesMap);
+        gvLanesMap = findViewById(R.id.idGVLanesMap);
 
-        Map gameMap = new Map();
-        Road road = new Road();
-        River river = new River();
-        SafeTile safeTile = new SafeTile();
-        GoalTile goalTile = new GoalTile();
-        gameMap.lanes = new Lane[] {goalTile, road, road, safeTile, river, river, river, safeTile, road, safeTile};
-        MapDisplayAdapter adapter = new MapDisplayAdapter(this, gameMap.lanes);
+        Map gameMap = new Map("Hard");
+        Lane[] lanes = new Lane[80];
+        for (int i = 0; i < gameMap.lanes.length; i++) {
+            for (int j = 0; j < 8; j++) {
+                lanes[8 * i + j] = gameMap.lanes[i];
+            }
+        }
+        MapDisplayAdapter adapter = new MapDisplayAdapter(this, lanes);
         
-        GVLanesMap.setAdapter(adapter);
+        gvLanesMap.setAdapter(adapter);
     }
 }

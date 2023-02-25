@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="67dp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/idIVLane"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/idIVLane"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/idIVSprite"
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:layout_marginLeft="9dp"
+        android:src="@mipmap/ic_launcher">
+    </ImageView>
 
 
-</androidx.cardview.widget.CardView>
+</android.widget.FrameLayout>

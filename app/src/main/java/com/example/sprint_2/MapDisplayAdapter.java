@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class MapDisplayAdapter extends ArrayAdapter<Lane> {
-    public MapDisplayAdapter(@NonNull Context context,Lane[] lanes) {
+    public MapDisplayAdapter(@NonNull Context context, Lane[] lanes) {
         super(context, 0, lanes);
     }
 
@@ -29,23 +29,29 @@ public class MapDisplayAdapter extends ArrayAdapter<Lane> {
 
         int laneIVSrc;
         switch (lane.getType()) {
-            case "river":
-                laneIVSrc = R.drawable.river;
-                break;
-            case "road":
-                laneIVSrc = R.drawable.road;
-                break;
-            case "safe tile":
-                laneIVSrc = R.drawable.safe_tile;
-                break;
-            case "goal tile":
-                laneIVSrc = R.drawable.goal_tile;
-                break;
-            default:
-                laneIVSrc = 0;
-                break;
+        case "river":
+            laneIVSrc = R.drawable.river;
+            break;
+        case "road":
+            laneIVSrc = R.drawable.road;
+            break;
+        case "safe tile":
+            laneIVSrc = R.drawable.safe_tile;
+            break;
+        case "goal tile":
+            laneIVSrc = R.drawable.goal_tile;
+            break;
+        default:
+            laneIVSrc = 0;
+            break;
         }
         laneIV.setImageResource(laneIVSrc);
+
+        ImageView spriteIV = laneView.findViewById(R.id.idIVSprite);
+        spriteIV.setImageResource(R.drawable.chicken);
+        if (position == 75) {
+            spriteIV.setVisibility(View.VISIBLE);
+        }
         return laneView;
     }
 }

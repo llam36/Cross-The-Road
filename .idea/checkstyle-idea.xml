@@ -9,6 +9,7 @@
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="f7b36b94-9d38-485b-aeef-acd6977dddcb" type="LOCAL_FILE" scope="All" description="CS2340">$PROJECT_DIR$/../cs2340_checkstyle.xml</ConfigurationLocation>
       </list>
     </option>
   </component>
