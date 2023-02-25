@@ -5,6 +5,6 @@ public abstract class Lane {
 
 
     public Tile getTile(int x) {
-        return null;
+        return tiles[x];
     }
 }
