@@ -7,26 +7,6 @@ public class Map {
     private int currentPlayerY;
     private String difficulty;
 
-    public void updatePlayerLocation(String s) {
-
-    }
-
-    public int getCurrentPlayerX() {
-        return currentPlayerX;
-    }
-
-    public int getCurrentPlayerY() {
-        return currentPlayerY;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
     public Map(String difficulty) {
         lanes = new Lane[10];
 
@@ -70,6 +50,25 @@ public class Map {
                 lanes[i] = new Road();
             }
         }
+    }
+    public void updatePlayerLocation(String s) {
+
+    }
+
+    public int getCurrentPlayerX() {
+        return currentPlayerX;
+    }
+
+    public int getCurrentPlayerY() {
+        return currentPlayerY;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getInfo(int x, int y) {
