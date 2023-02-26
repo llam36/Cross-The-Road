@@ -8,7 +8,7 @@ public class SwipeListener implements View.OnTouchListener {
     private String direction;
     private GestureDetector gestureDetector;
 
-    SwipeListener(View view) {
+    SwipeListener(View view, Map gameMap) {
         int threshold = 100;
         int velocityThreshold = 100;
         GestureDetector.SimpleOnGestureListener listener = new
@@ -25,9 +25,13 @@ public class SwipeListener implements View.OnTouchListener {
                             if (Math.abs(xDiff) > threshold && Math.abs(velocityX)
                                     > velocityThreshold) {
                                 if (xDiff > 0) {
-                                    direction = "right";
+                                    gameMap.updatePlayerLocation("right");
+                                    System.out.println("current player x: " + gameMap.getCurrentPlayerX());
+                                    System.out.println("current player y: " + gameMap.getCurrentPlayerY());
                                 } else {
-                                    direction = "left";
+                                    gameMap.updatePlayerLocation("left");
+                                    System.out.println("current player x: " + gameMap.getCurrentPlayerX());
+                                    System.out.println("current player y: " + gameMap.getCurrentPlayerY());
                                 }
                                 return true;
                             }
@@ -35,20 +39,24 @@ public class SwipeListener implements View.OnTouchListener {
                             if (Math.abs(yDiff) > threshold
                                     && Math.abs(velocityY) > velocityThreshold) {
                                 if (yDiff > 0) {
-                                    direction = "down";
+                                    gameMap.updatePlayerLocation("down");
+                                    System.out.println("current player x: " + gameMap.getCurrentPlayerX());
+                                    System.out.println("current player y: " + gameMap.getCurrentPlayerY());
                                 } else {
-                                    direction = "up";
+                                    gameMap.updatePlayerLocation("up");
+                                    System.out.println("current player x: " + gameMap.getCurrentPlayerX());
+                                    System.out.println("current player y: " + gameMap.getCurrentPlayerY());
                                 }
                                 return true;
                             }
 
                         }
+
                         return false;
                     }
                 };
         gestureDetector = new GestureDetector(listener);
         view.setOnTouchListener(this);
-
     }
 
     public String getDirection() {
