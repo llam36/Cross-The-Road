@@ -79,7 +79,7 @@ public class GameScreen extends AppCompatActivity {
         });
     }
     public void playGame() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MapScreen.class);
         startActivity(intent);
     }
 }
