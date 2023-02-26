@@ -26,7 +26,7 @@ public class Map {
                 lanes[i] = new Road();
             }
             lanes[safeTileId] =  new SafeTile();
-            for (int i=safeTileId; i < 10; i++) {
+            for (int i=safeTileId+1; i < 10; i++) {
                 lanes[i] = new River();
             }
         } else {
@@ -44,11 +44,11 @@ public class Map {
                 lanes[i] = new Road();
             }
             lanes[safeTileId1] =  new SafeTile();
-            for (int i=safeTileId1; i < safeTileId2; i++) {
+            for (int i=safeTileId1+1; i < safeTileId2; i++) {
                 lanes[i] = new River();
             }
             lanes[safeTileId2] =  new SafeTile();
-            for (int i = safeTileId2; i < 10; i++) {
+            for (int i = safeTileId2+1; i < 10; i++) {
                 lanes[i] = new Road();
             }
         }
@@ -57,5 +57,4 @@ public class Map {
     public String getInfo(int x, int y) {
         return lanes[y].getTile(x).getInfo();
     }
-
 }

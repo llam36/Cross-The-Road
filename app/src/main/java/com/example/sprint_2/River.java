@@ -9,4 +9,8 @@ public class River extends Lane{
             tiles[i] = new Tile("River");
         }
     }
+    @Override
+    public String getType() {
+        return "river";
+    }
 }

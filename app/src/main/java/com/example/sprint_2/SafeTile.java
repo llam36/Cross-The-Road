@@ -1,6 +1,6 @@
 package com.example.sprint_2;
 
-public class SafeTile extends Lane{
+public class SafeTile extends Lane {
     public Tile[] tiles;
 
     public SafeTile() {
@@ -9,6 +9,8 @@ public class SafeTile extends Lane{
             tiles[i] = new Tile("SafeTile");
         }
     }
-
-
+    @Override
+    public String getType() {
+        return "safe tile";
+    }
 }

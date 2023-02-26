@@ -9,4 +9,8 @@ public class Road extends Lane{
             tiles[i] = new Tile("Road");
         }
     }
+    @Override
+    public String getType() {
+        return "road";
+    }
 }
