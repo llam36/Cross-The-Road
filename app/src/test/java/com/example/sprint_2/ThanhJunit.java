@@ -14,4 +14,11 @@ public class ThanhJunit {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    public void difficulty_numLivesCorrect() {
+    }
+
+    public void spriteCheck() {
+
+    }
 }
