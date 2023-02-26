@@ -1,9 +1,11 @@
 package com.example.sprint_2;
 
 public class Map {
+
     public Lane[] lanes;
     public int currentPlayerX;
     public int currentPlayerY;
+    public String difficulty;
 
     //TODO: @paranit
     public void updatePlayerLocation(String s) {

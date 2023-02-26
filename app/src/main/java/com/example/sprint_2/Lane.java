@@ -4,7 +4,7 @@ public abstract class Lane {
     public Tile[] tiles;
 
     public Tile getTile(int x) {
-        return null;
+        return tiles[x];
     }
 
     public abstract String getType();
