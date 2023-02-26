@@ -25,17 +25,13 @@ public class SwipeListener implements View.OnTouchListener {
                                 > velocityThreshold) {
                             if (xDiff > 0) {
                                 gameMap.updatePlayerLocation("right", adapter);
-                                System.out.println("current player x: "
-                                        + gameMap.getCurrentPlayerX());
-                                System.out.println("current player y: "
-                                        + gameMap.getCurrentPlayerY());
                             } else {
                                 gameMap.updatePlayerLocation("left", adapter);
-                                System.out.println("current player x: "
-                                        + gameMap.getCurrentPlayerX());
-                                System.out.println("current player y: "
-                                        + gameMap.getCurrentPlayerY());
                             }
+                            System.out.println("current player x: "
+                                    + gameMap.getCurrentPlayerX());
+                            System.out.println("current player y: "
+                                    + gameMap.getCurrentPlayerY());
                             return true;
                         }
                     } else {
@@ -43,17 +39,13 @@ public class SwipeListener implements View.OnTouchListener {
                                 && Math.abs(velocityY) > velocityThreshold) {
                             if (yDiff > 0) {
                                 gameMap.updatePlayerLocation("down", adapter);
-                                System.out.println("current player x: "
-                                        + gameMap.getCurrentPlayerX());
-                                System.out.println("current player y: "
-                                        + gameMap.getCurrentPlayerY());
                             } else {
                                 gameMap.updatePlayerLocation("up", adapter);
-                                System.out.println("current player x: "
-                                        + gameMap.getCurrentPlayerX());
-                                System.out.println("current player y: "
-                                        + gameMap.getCurrentPlayerY());
                             }
+                            System.out.println("current player x: "
+                                    + gameMap.getCurrentPlayerX());
+                            System.out.println("current player y: "
+                                    + gameMap.getCurrentPlayerY());
                             return true;
                         }
 
