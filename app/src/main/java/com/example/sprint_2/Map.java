@@ -23,16 +23,17 @@ public class Map {
                 lanes[i] = new Road();
             }
             lanes[safeTileId] =  new SafeTile();
-            for (int i = safeTileId + 1; i < 10; i++) {
+            for (int i = safeTileId + 1; i < 9; i++) {
                 lanes[i] = new River();
             }
+            lanes[10] =  new GoalTile();
         } else {
             // range for safe tile
             int lowerBound1 = 2;
             int higherBound1 = 4;
 
             int lowerBound2 = 6;
-            int higherBound2 = 8;
+            int higherBound2 = 7;
 
             //generate the map =
             int safeTileId1 = (int) Math.floor(Math.random()
@@ -47,9 +48,10 @@ public class Map {
                 lanes[i] = new River();
             }
             lanes[safeTileId2] =  new SafeTile();
-            for (int i = safeTileId2 + 1; i < 10; i++) {
+            for (int i = safeTileId2 + 1; i < 9; i++) {
                 lanes[i] = new Road();
             }
+            lanes[10] =  new GoalTile();
         }
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {

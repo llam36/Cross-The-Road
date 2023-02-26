@@ -5,4 +5,8 @@ public class GoalTile extends Lane {
     public String getType() {
         return "GoalTile";
     }
+
+    public GoalTile() {
+
+    }
 }
