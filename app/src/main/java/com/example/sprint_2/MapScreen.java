@@ -6,7 +6,11 @@ import android.os.Bundle;
 
 import android.widget.GridView;
 
-public class MainActivity extends AppCompatActivity {
+public class MapScreen extends AppCompatActivity {
+    private Bundle playerInfo;
+    private String name;
+    private String level;
+    private int imageOption;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,14 +18,21 @@ public class MainActivity extends AppCompatActivity {
 
         GridView gvLanesMap = findViewById(R.id.idGVLanesMap);
 
-        Map gameMap = new Map("Hard");
+        playerInfo = getIntent().getExtras();
+        name = playerInfo.getString("name");
+        level = playerInfo.getString("level");
+        imageOption = playerInfo.getInt("image");
+
+        Map gameMap = new Map(level);
 
         Tile[] mapAdapterArray = createMapAdapterArray(gameMap);
 
-        MapDisplayAdapter adapter = new MapDisplayAdapter(this, mapAdapterArray, gameMap);
+        MapDisplayAdapter adapter = new MapDisplayAdapter(this, mapAdapterArray, gameMap, imageOption);
         SwipeListener swipeDetection = new SwipeListener(gvLanesMap, gameMap, adapter);
 
         gvLanesMap.setAdapter(adapter);
+
+        Player player = new Player(level, name, imageOption);
     }
     public Tile[] createMapAdapterArray(Map gameMap) {
         Tile[] tiles = new Tile[80];

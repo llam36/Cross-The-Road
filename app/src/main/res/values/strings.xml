@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Sprint-2</string>
+    <string name="app_name">Cross The Road</string>
+    <string name="gameMap">Image of game map</string>
+    <string name="playerName">Name of player</string>
+    <string name="sprite">Player avatar</string>
+    <string name="playButton">Play</string>
+    <string name="startingLives">Lives:   </string>
+    <string name="startingPoint">Point:   </string>
+    <string name="difficulty">Difficulty</string>
 </resources>
