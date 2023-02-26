@@ -24,5 +24,8 @@ public class MainActivity extends AppCompatActivity {
         MapDisplayAdapter adapter = new MapDisplayAdapter(this, lanes);
         
         gvLanesMap.setAdapter(adapter);
+
+        SwipeListener swipeDetection = new SwipeListener(gvLanesMap);
+        gameMap.updatePlayerLocation(swipeDetection.getDirection());
     }
 }
