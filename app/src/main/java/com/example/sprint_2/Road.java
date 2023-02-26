@@ -1,11 +1,9 @@
 package com.example.sprint_2;
 
-public class Road extends Lane{
-    public Tile[] tiles;
-
+public class Road extends Lane {
     public Road() {
         tiles = new Tile[10];
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             tiles[i] = new Tile("Road");
         }
     }
