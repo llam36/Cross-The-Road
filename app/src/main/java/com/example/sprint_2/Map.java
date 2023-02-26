@@ -1,7 +1,5 @@
 package com.example.sprint_2;
 
-import android.content.res.Resources;
-
 public class Map {
 
     private final Lane[] lanes;
@@ -11,6 +9,7 @@ public class Map {
 
     public Map(String difficulty) {
         lanes = new Lane[10];
+        this.difficulty = difficulty;
 
         if (difficulty.equals("Easy") || difficulty.equals("Medium")) {
             // range for safe tile
@@ -53,15 +52,19 @@ public class Map {
             }
         }
     }
-    public void updatePlayerLocation(String s) {
+    public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         if (s.equals("left") && currentPlayerX > 0) {
             currentPlayerX -= 1;
-        } else if (s.equals("right") && currentPlayerX < 9) {
+            adapter.notifyDataSetChanged();
+        } else if (s.equals("right") && currentPlayerX < 7) {
             currentPlayerX += 1;
+            adapter.notifyDataSetChanged();
         } else if (s.equals("up") && currentPlayerY > 0) {
             currentPlayerY -= 1;
+            adapter.notifyDataSetChanged();
         } else if (s.equals("down") && currentPlayerY < 9) {
             currentPlayerY += 1;
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -71,6 +74,10 @@ public class Map {
 
     public int getCurrentPlayerY() {
         return currentPlayerY;
+    }
+
+    public int getCurrentPlayerPosition() {
+        return 8 * currentPlayerY + currentPlayerX;
     }
 
     public String getDifficulty() {
