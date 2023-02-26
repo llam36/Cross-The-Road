@@ -5,8 +5,8 @@ import android.content.res.Resources;
 public class Map {
 
     private final Lane[] lanes;
-    private int currentPlayerX = 5;
-    private int currentPlayerY = 5;
+    private int currentPlayerX = 4;
+    private int currentPlayerY = 9;
     private String difficulty;
 
     public Map(String difficulty) {
@@ -54,23 +54,14 @@ public class Map {
         }
     }
     public void updatePlayerLocation(String s) {
-        System.out.println("The input direction: " + s);
-        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-        int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-        if (currentPlayerX < screenWidth && currentPlayerX > 0) {
-            if (s.equals("left")) {
-                currentPlayerX -= 1;
-                System.out.println(currentPlayerX);
-            } else if (s.equals("right")) {
-                currentPlayerX += 1;
-            }
-        }
-        if (currentPlayerY < screenHeight && currentPlayerY > 0) {
-            if (s.equals("up")) {
-                currentPlayerY += 1;
-            } else if (s.equals("down")) {
-                currentPlayerY -= 1;
-            }
+        if (s.equals("left") && currentPlayerX > 0) {
+            currentPlayerX -= 1;
+        } else if (s.equals("right") && currentPlayerX < 9) {
+            currentPlayerX += 1;
+        } else if (s.equals("up") && currentPlayerY > 0) {
+            currentPlayerY -= 1;
+        } else if (s.equals("down") && currentPlayerY < 9) {
+            currentPlayerY += 1;
         }
     }
 
