@@ -48,8 +48,8 @@ public class MapDisplayAdapter extends ArrayAdapter<Lane> {
         laneIV.setImageResource(laneIVSrc);
 
         ImageView spriteIV = laneView.findViewById(R.id.idIVSprite);
-        spriteIV.setImageResource(R.drawable.chicken);
-        if (position == 75) {
+        spriteIV.setImageResource(R.drawable.sprite_chicken);
+        if (position == 0) {
             spriteIV.setVisibility(View.VISIBLE);
         }
         return laneView;

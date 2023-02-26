@@ -1,4 +1,5 @@
 package com.example.sprint_2;
 
-public class MapDisplay {
+public class MapScreen {
+
 }
