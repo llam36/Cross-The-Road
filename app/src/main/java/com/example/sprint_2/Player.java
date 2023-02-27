@@ -1,10 +1,13 @@
 package com.example.sprint_2;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
+    private String level;
     private int lives;
     private String name;
-    private int pathToImage;
-    public Player(String level, String name, int pathToImage) {
+    private int imageOption;
+    public Player(String level, String name, int imageOption) {
         switch (level) {
             case "Easy":
                 this.lives = 10;
@@ -18,10 +21,14 @@ public class Player {
             default:
                 break;
         }
+        this.level = level;
         this.name = name;
-        this.pathToImage = pathToImage;
+        this.imageOption = imageOption;
     }
 
+    public String getLevel() {
+        return level;
+    }
     public int getLives() {
         return lives;
     }
@@ -38,11 +45,16 @@ public class Player {
         this.name = name;
     }
 
-    public int getPathToImage() {
-        return pathToImage;
+    public int getImageOption() {
+        return imageOption;
     }
 
-    public void setPathToImage(int pathToImage) {
-        this.pathToImage = pathToImage;
+    public void imageOption(int imageOption) {
+        this.imageOption = imageOption;
     }
+
+    public int getNumLife() {
+        return lives;
+    }
+
 }

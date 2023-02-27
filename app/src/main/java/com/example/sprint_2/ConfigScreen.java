@@ -35,6 +35,8 @@ public class ConfigScreen extends AppCompatActivity {
     private String level = "";
     private int imageOption;
 
+    private Player player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,9 +127,8 @@ public class ConfigScreen extends AppCompatActivity {
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent send = new Intent(ConfigScreen.this, GameScreen.class);
-                            send.putExtra("name", name);
-                            send.putExtra("level", level);
-                            send.putExtra("image", imageOption);
+                            player = new Player(level, name, imageOption);
+                            send.putExtra("player", player);
                             startActivity(send);
                         }
                     });
