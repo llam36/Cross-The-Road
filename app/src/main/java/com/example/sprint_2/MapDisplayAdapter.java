@@ -25,7 +25,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         View tileView = convertView;
         if (tileView == null) {
             // Layout Inflater inflates each item to be displayed in GridView.
-            tileView = LayoutInflater.from(getContext()).inflate(R.layout.lane, parent, false);
+            tileView = LayoutInflater.from(getContext()).inflate(R.layout.lane_layout, parent, false);
         }
 
         Tile tile = getItem(position);
