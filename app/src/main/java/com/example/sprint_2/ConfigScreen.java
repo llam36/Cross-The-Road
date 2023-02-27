@@ -33,18 +33,6 @@ public class ConfigScreen extends AppCompatActivity {
     private String level = "";
     private int imageOption;
 
-    public static boolean isEmptyStringName(String name) {
-        return name.equals("");
-    }
-
-    public static boolean isWhiteSpaceOnlyName(String name) {
-        return name.trim().equals("");
-    }
-
-    public static boolean isNullName(String name) {
-        return name == null;
-    }
-
     private Player player = new Player();
 
 
