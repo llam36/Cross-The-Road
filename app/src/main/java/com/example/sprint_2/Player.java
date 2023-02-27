@@ -57,4 +57,16 @@ public class Player implements Serializable {
         return lives;
     }
 
+    public boolean isEmptyStringName(String name) {
+        return name.equals("");
+    }
+
+    public boolean isWhiteSpaceOnlyName(String name) {
+        return name.trim().equals("");
+    }
+
+    public boolean isNullName(String name) {
+        return name == null;
+    }
+
 }
