@@ -7,6 +7,15 @@ public class Player implements Serializable {
     private int lives;
     private String name;
     private int imageOption;
+
+    public Player() {
+        this.level = "";
+        this.lives = 0;
+        this.name = "";
+        this.imageOption = 0;
+    }
+
+
     public Player(String level, String name, int imageOption) {
         switch (level) {
         case "Easy":

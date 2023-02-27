@@ -45,7 +45,7 @@ public class ConfigScreen extends AppCompatActivity {
         return name == null;
     }
 
-    private Player player;
+    private Player player = new Player();
 
 
     @Override
