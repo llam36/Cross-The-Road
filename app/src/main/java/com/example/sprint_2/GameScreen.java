@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreen extends AppCompatActivity {
-    private Bundle playerInfo;
     private String name;
     private String level;
+    private Player player;
     private int imageOption;
     private TextView playerName;
     private TextView lives;
@@ -25,29 +25,18 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
-        playerInfo = getIntent().getExtras();
-        name = playerInfo.getString("name");
-        level = playerInfo.getString("level");
-        imageOption = playerInfo.getInt("image");
+        player = (Player) getIntent().getSerializableExtra("player");
+        name = player.getName();
+        level = player.getLevel();
+        imageOption = player.getImageOption();
 
 
         playerName = (TextView) findViewById(R.id.playerName);
         playerName.setText(name);
 
         lives = (TextView) findViewById(R.id.startingLives);
-        switch (level) {
-        case "Easy":
-            lives.setText("Lives: 10");
-            break;
-        case "Medium":
-            lives.setText("Lives: 8");
-            break;
-        case "Hard":
-            lives.setText("Lives: 6");
-            break;
-        default:
-            break;
-        }
+        lives.setText("Lives: " + player.getNumLife());
+
 
         points = (TextView) findViewById(R.id.startingPoint);
         points.setText("Points: 0");
@@ -68,9 +57,7 @@ public class GameScreen extends AppCompatActivity {
     }
     public void playGame() {
         Intent send = new Intent(this, MapScreen.class);
-        send.putExtra("name", name);
-        send.putExtra("level", level);
-        send.putExtra("image", imageOption);
+        send.putExtra("player", player);
         startActivity(send);
     }
 }

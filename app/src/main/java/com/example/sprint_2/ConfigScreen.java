@@ -1,7 +1,5 @@
 package com.example.sprint_2;
 
-import static android.content.DialogInterface.BUTTON_POSITIVE;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +32,21 @@ public class ConfigScreen extends AppCompatActivity {
     private String name = "";
     private String level = "";
     private int imageOption;
+
+    public static boolean isEmptyStringName(String name) {
+        return name.equals("");
+    }
+
+    public static boolean isWhiteSpaceOnlyName(String name) {
+        return name.trim().equals("");
+    }
+
+    public static boolean isNullName(String name) {
+        return name == null;
+    }
+
+    private Player player = new Player();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +88,9 @@ public class ConfigScreen extends AppCompatActivity {
         radioButtonTiger = (RadioButton) findViewById(R.id.rButtonDuck);
         radioButtonTiger.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { imageOption = R.drawable.duck; }
+            public void onClick(View v) {
+                imageOption = R.drawable.duck;
+            }
         });
 
         radioButtonWolf = (RadioButton) findViewById(R.id.rButtonRabbit);
@@ -103,7 +118,7 @@ public class ConfigScreen extends AppCompatActivity {
             public void onClick(View v) {
                 EditText nameText  = (EditText) findViewById(R.id.textName);
                 name = nameText.getText().toString();
-                if (name == null || name.trim().equals("")) {
+                if (isNullName(name) || isEmptyStringName(name) || isWhiteSpaceOnlyName(name)) {
                     AlertDialog nameDialog = alertBuilder.create();
                     nameDialog.setMessage("Please answer your name!");
                     nameDialog.show();
@@ -122,15 +137,27 @@ public class ConfigScreen extends AppCompatActivity {
                     confirmDialog.setTitle("Confirmation");
                     confirmDialog.show();
                     
+
+                    confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
+                            new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent send = new Intent(ConfigScreen.this, GameScreen.class);
+                                send.putExtra("name", name);
+                                send.putExtra("level", level);
+                                send.putExtra("image", imageOption);
+                                startActivity(send);
+                            }
+                        });
+
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent send = new Intent(ConfigScreen.this, GameScreen.class);
-                            send.putExtra("name", name);
-                            send.putExtra("level", level);
-                            send.putExtra("image", imageOption);
+                            player = new Player(level, name, imageOption);
+                            send.putExtra("player", player);
                             startActivity(send);
                         }
                     });
+
                     
                 }
             }

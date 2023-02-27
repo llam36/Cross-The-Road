@@ -1,27 +1,43 @@
 package com.example.sprint_2;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
+    private String level;
     private int lives;
     private String name;
-    private int pathToImage;
-    public Player(String level, String name, int pathToImage) {
-        switch (level) {
-            case "Easy":
-                this.lives = 10;
-                break;
-            case "Medium":
-                this.lives = 8;
-                break;
-            case "Hard":
-                this.lives = 6;;
-                break;
-            default:
-                break;
-        }
-        this.name = name;
-        this.pathToImage = pathToImage;
+    private int imageOption;
+
+    public Player() {
+        this.level = "";
+        this.lives = 0;
+        this.name = "";
+        this.imageOption = 0;
     }
 
+
+    public Player(String level, String name, int imageOption) {
+        switch (level) {
+        case "Easy":
+            this.lives = 10;
+            break;
+        case "Medium":
+            this.lives = 8;
+            break;
+        case "Hard":
+            this.lives = 6;
+            break;
+        default:
+            break;
+        }
+        this.level = level;
+        this.name = name;
+        this.imageOption = imageOption;
+    }
+
+    public String getLevel() {
+        return level;
+    }
     public int getLives() {
         return lives;
     }
@@ -38,11 +54,28 @@ public class Player {
         this.name = name;
     }
 
-    public int getPathToImage() {
-        return pathToImage;
+    public int getImageOption() {
+        return imageOption;
     }
 
-    public void setPathToImage(int pathToImage) {
-        this.pathToImage = pathToImage;
+    public void imageOption(int imageOption) {
+        this.imageOption = imageOption;
     }
+
+    public int getNumLife() {
+        return lives;
+    }
+
+    public boolean isEmptyStringName(String name) {
+        return name.equals("");
+    }
+
+    public boolean isWhiteSpaceOnlyName(String name) {
+        return name.trim().equals("");
+    }
+
+    public boolean isNullName(String name) {
+        return name == null;
+    }
+
 }

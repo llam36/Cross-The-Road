@@ -14,20 +14,20 @@ public class Map {
         if (difficulty.equals("Easy") || difficulty.equals("Medium")) {
             // range for safe tile
             int lowerBound = 3;
-            int higherBound = 8;
+            int higherBound = 7;
 
             //generate the map =
             lanes[0] =  new GoalTile();
             int safeTileId = (int) Math.floor(Math.random()
                     * (higherBound - lowerBound + 1) + lowerBound);
             for (int i = 1; i < safeTileId; i++) {
-                lanes[i] = new Road();
+                lanes[i] = new River();
             }
             lanes[safeTileId] =  new SafeTile();
             for (int i = safeTileId + 1; i < 10; i++) {
-                lanes[i] = new River();
+                lanes[i] = new Road();
             }
-
+            lanes[0] =  new GoalTile();
         } else {
             // range for safe tile
             int lowerBound1 = 2;
@@ -50,33 +50,42 @@ public class Map {
                 lanes[i] = new River();
             }
             lanes[safeTileId2] =  new SafeTile();
-            for (int i = safeTileId2 + 1; i < 10; i++) {
+            for (int i = safeTileId2 + 1; i < 9; i++) {
                 lanes[i] = new Road();
             }
+            lanes[0] =  new GoalTile();
+        }
+    }
+    public void updatePlayerLocationOnly(String s) {
+        if (s.equals("left") && currentPlayerX > 0) {
+            currentPlayerX -= 1;
+        } else if (s.equals("right") && currentPlayerX < 7) {
+            currentPlayerX += 1;
+        } else if (s.equals("up") && currentPlayerY > 0) {
+            currentPlayerY -= 1;
+        } else if (s.equals("down") && currentPlayerY < 9) {
+            currentPlayerY += 1;
         }
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
-        if (s.equals("left") && currentPlayerX > 0) {
-            currentPlayerX -= 1;
-            adapter.notifyDataSetChanged();
-        } else if (s.equals("right") && currentPlayerX < 7) {
-            currentPlayerX += 1;
-            adapter.notifyDataSetChanged();
-        } else if (s.equals("up") && currentPlayerY > 0) {
-            currentPlayerY -= 1;
-            adapter.notifyDataSetChanged();
-        } else if (s.equals("down") && currentPlayerY < 9) {
-            currentPlayerY += 1;
-            adapter.notifyDataSetChanged();
-        }
+        updatePlayerLocationOnly(s);
+        adapter.notifyDataSetChanged();
     }
 
     public int getCurrentPlayerX() {
         return currentPlayerX;
     }
 
+    public void setCurrentPlayerX(int currentPlayerX) {
+        this.currentPlayerX = currentPlayerX;
+    }
+
     public int getCurrentPlayerY() {
         return currentPlayerY;
+    }
+
+    public void setCurrentPlayerY(int currentPlayerY) {
+        this.currentPlayerY = currentPlayerY;
     }
 
     public int getCurrentPlayerPosition() {
