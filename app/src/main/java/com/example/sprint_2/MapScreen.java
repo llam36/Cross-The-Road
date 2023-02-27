@@ -14,7 +14,7 @@ public class MapScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.map_screen);
 
         GridView gvLanesMap = findViewById(R.id.idGVLanesMap);
 
