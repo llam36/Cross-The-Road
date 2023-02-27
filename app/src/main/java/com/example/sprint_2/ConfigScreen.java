@@ -33,6 +33,7 @@ public class ConfigScreen extends AppCompatActivity {
     private String level = "";
     private int imageOption;
 
+<<<<<<< HEAD
     public static boolean isEmptyStringName(String name) {
         return name.equals("");
     }
@@ -44,6 +45,10 @@ public class ConfigScreen extends AppCompatActivity {
     public static boolean isNullName(String name) {
         return name == null;
     }
+=======
+    private Player player;
+
+>>>>>>> Thanh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +138,7 @@ public class ConfigScreen extends AppCompatActivity {
                     confirmDialog.setTitle("Confirmation");
                     confirmDialog.show();
                     
+<<<<<<< HEAD
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
                             new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -143,6 +149,16 @@ public class ConfigScreen extends AppCompatActivity {
                                 startActivity(send);
                             }
                         });
+=======
+                    confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent send = new Intent(ConfigScreen.this, GameScreen.class);
+                            player = new Player(level, name, imageOption);
+                            send.putExtra("player", player);
+                            startActivity(send);
+                        }
+                    });
+>>>>>>> Thanh
                     
                 }
             }

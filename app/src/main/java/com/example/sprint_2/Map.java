@@ -14,18 +14,22 @@ public class Map {
         if (difficulty.equals("Easy") || difficulty.equals("Medium")) {
             // range for safe tile
             int lowerBound = 3;
-            int higherBound = 8;
+            int higherBound = 7;
 
             //generate the map =
             lanes[0] =  new GoalTile();
             int safeTileId = (int) Math.floor(Math.random()
                     * (higherBound - lowerBound + 1) + lowerBound);
             for (int i = 1; i < safeTileId; i++) {
-                lanes[i] = new Road();
+                lanes[i] = new River();
             }
             lanes[safeTileId] =  new SafeTile();
             for (int i = safeTileId + 1; i < 10; i++) {
+<<<<<<< HEAD
                 lanes[i] = new River();
+=======
+                lanes[i] = new Road();
+>>>>>>> Thanh
             }
         } else {
             // range for safe tile
