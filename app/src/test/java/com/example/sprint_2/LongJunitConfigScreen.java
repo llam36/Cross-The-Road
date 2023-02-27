@@ -6,11 +6,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LongJunitConfigScreen {
+    private Player player;
     @Before
-    public void setUp() {}
+    public void setUp() {
+        player = new Player();
+    }
     @Test
     public void checkEmptyStringName() {
-        assertTrue(ConfigScreen.isEmptyStringName("") == true);
-        assertTrue(ConfigScreen.isEmptyStringName("MyName") == false);
+        assertTrue(player.isEmptyStringName("") == true);
+        assertTrue(player.isEmptyStringName("MyName") == false);
     }
 }
