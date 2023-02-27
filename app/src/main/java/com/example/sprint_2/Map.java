@@ -54,20 +54,20 @@ public class Map {
             lanes[0] =  new GoalTile();
         }
     }
-    public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
+    public void updatePlayerLocationOnly(String s) {
         if (s.equals("left") && currentPlayerX > 0) {
             currentPlayerX -= 1;
-            adapter.notifyDataSetChanged();
         } else if (s.equals("right") && currentPlayerX < 7) {
             currentPlayerX += 1;
-            adapter.notifyDataSetChanged();
         } else if (s.equals("up") && currentPlayerY > 0) {
             currentPlayerY -= 1;
-            adapter.notifyDataSetChanged();
         } else if (s.equals("down") && currentPlayerY < 9) {
             currentPlayerY += 1;
-            adapter.notifyDataSetChanged();
         }
+    }
+    public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
+        updatePlayerLocationOnly(s);
+        adapter.notifyDataSetChanged();
     }
 
     public int getCurrentPlayerX() {
