@@ -109,7 +109,8 @@ public class ConfigScreen extends AppCompatActivity {
             public void onClick(View v) {
                 EditText nameText  = (EditText) findViewById(R.id.textName);
                 name = nameText.getText().toString();
-                if (player.isNullName(name) || player.isEmptyStringName(name) || player.isWhiteSpaceOnlyName(name)) {
+                if (player.isNullName(name) || player.isEmptyStringName(name)
+                        || player.isWhiteSpaceOnlyName(name)) {
                     AlertDialog nameDialog = alertBuilder.create();
                     nameDialog.setMessage("Please answer your name!");
                     nameDialog.show();
@@ -140,14 +141,15 @@ public class ConfigScreen extends AppCompatActivity {
                             }
                         });
 
-                    confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent send = new Intent(ConfigScreen.this, GameScreen.class);
-                            player = new Player(level, name, imageOption);
-                            send.putExtra("player", player);
-                            startActivity(send);
-                        }
-                    });
+                    confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent send = new Intent(ConfigScreen.this, GameScreen.class);
+                                    player = new Player(level, name, imageOption);
+                                    send.putExtra("player", player);
+                                    startActivity(send);
+                                }
+                            });
 
                     
                 }

@@ -28,10 +28,10 @@ public class ThanhJunit {
     }
     @Test
     public void checkPlayerSprite() {
-        assertTrue(player.getImageOption() == 2131165412);
+        assertTrue(player.getImageOption() == R.drawable.chicken);
         player.setImageOption(R.drawable.duck);
-        assertTrue(player.getImageOption() == 2131165413);
+        assertTrue(player.getImageOption() == R.drawable.duck);
         player.setImageOption(R.drawable.rabbit);
-        assertTrue(player.getImageOption()== 2131165416);
+        assertTrue(player.getImageOption() == R.drawable.rabbit);
     }
 }
