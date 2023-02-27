@@ -35,6 +35,17 @@ public class ConfigScreen extends AppCompatActivity {
     private String level = "";
     private int imageOption;
 
+    public static boolean isEmptyStringName(String name) {
+        return name.equals("");
+    }
+
+    public static boolean isWhiteSpaceOnlyName(String name) {
+        return name.trim().equals("");
+    }
+
+    public static boolean isNullName(String name) {
+        return name == null;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +114,7 @@ public class ConfigScreen extends AppCompatActivity {
             public void onClick(View v) {
                 EditText nameText  = (EditText) findViewById(R.id.textName);
                 name = nameText.getText().toString();
-                if (name == null || name.trim().equals("")) {
+                if (isNullName(name) || isEmptyStringName(name) || isWhiteSpaceOnlyName(name)) {
                     AlertDialog nameDialog = alertBuilder.create();
                     nameDialog.setMessage("Please answer your name!");
                     nameDialog.show();

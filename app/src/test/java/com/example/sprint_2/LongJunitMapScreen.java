@@ -19,8 +19,29 @@ public class LongJunitMapScreen {
     }
 
     @Test
-    public void checkPlayerOffScreen() {
+    public void checkPlayerOffLeftScreen() {
         gameMap.setCurrentPlayerX(0);
-        
+        gameMap.updatePlayerLocationOnly("left");
+        assertEquals(0, gameMap.getCurrentPlayerX());
+    }
+    @Test
+    public void checkPlayerOffRightScreen() {
+        gameMap.setCurrentPlayerX(7);
+        gameMap.updatePlayerLocationOnly("right");
+        assertEquals(7, gameMap.getCurrentPlayerX());
+    }
+
+    @Test
+    public void checkPlayerOffTopScreen() {
+        gameMap.setCurrentPlayerY(0);
+        gameMap.updatePlayerLocationOnly("up");
+        assertEquals(0, gameMap.getCurrentPlayerY());
+    }
+
+    @Test
+    public void checkPlayerOffBottomScreen() {
+        gameMap.setCurrentPlayerY(9);
+        gameMap.updatePlayerLocationOnly("down");
+        assertEquals(9, gameMap.getCurrentPlayerY());
     }
 }
