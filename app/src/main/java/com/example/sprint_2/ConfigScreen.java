@@ -33,7 +33,7 @@ public class ConfigScreen extends AppCompatActivity {
     //variable
     private String name = "";
     private String level = "";
-    private String imageOption;
+    private int imageOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,21 +68,21 @@ public class ConfigScreen extends AppCompatActivity {
         radioButtonCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageOption = "Chicken";
+                imageOption = R.drawable.chicken;
             }
         });
 
         radioButtonTiger = (RadioButton) findViewById(R.id.rButtonDuck);
         radioButtonTiger.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { imageOption = "Duck"; }
+            public void onClick(View v) { imageOption = R.drawable.duck; }
         });
 
         radioButtonWolf = (RadioButton) findViewById(R.id.rButtonRabbit);
         radioButtonWolf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageOption = "Rabbit";
+                imageOption = R.drawable.rabbit;
             }
         });
 
@@ -111,7 +111,7 @@ public class ConfigScreen extends AppCompatActivity {
                     AlertDialog levelDialog = alertBuilder.create();
                     levelDialog.setMessage("Please choose your level!");
                     levelDialog.show();
-                } else if (imageOption == null) {
+                } else if (imageOption == 0) {
                     AlertDialog imageDialog = alertBuilder.create();
                     imageDialog.setMessage("Please choose your image!");
                     imageDialog.show();

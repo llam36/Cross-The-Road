@@ -9,9 +9,17 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class LongJunit {
+public class ThanhJunit {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+
+    public void difficulty_numLivesCorrect() {
+
+    }
+
+    public void spriteCheck() {
+
     }
 }

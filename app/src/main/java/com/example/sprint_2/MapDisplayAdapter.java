@@ -11,9 +11,11 @@ import androidx.annotation.Nullable;
 
 public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     private Map gameMap;
-    public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap) {
+    private int imageOption;
+    public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap, int imageOption) {
         super(context, 0, tiles);
         this.gameMap = gameMap;
+        this.imageOption = imageOption;
     }
 
     @NonNull
@@ -50,7 +52,8 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         tileIV.setImageResource(tileVSrc);
 
         ImageView spriteIV = tileView.findViewById(R.id.idIVSprite);
-        spriteIV.setImageResource(R.drawable.sprite_chicken);
+
+        spriteIV.setImageResource(imageOption);
         if (position == gameMap.getCurrentPlayerPosition()) {
             spriteIV.setVisibility(View.VISIBLE);
         } else {

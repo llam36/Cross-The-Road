@@ -13,7 +13,7 @@ public class GameScreen extends AppCompatActivity {
     private Bundle playerInfo;
     private String name;
     private String level;
-    private String imageOption;
+    private int imageOption;
     private TextView playerName;
     private TextView lives;
     private TextView points;
@@ -28,7 +28,7 @@ public class GameScreen extends AppCompatActivity {
         playerInfo = getIntent().getExtras();
         name = playerInfo.getString("name");
         level = playerInfo.getString("level");
-        imageOption = playerInfo.getString("image");
+        imageOption = playerInfo.getInt("image");
 
 
         playerName = (TextView) findViewById(R.id.playerName);
@@ -56,19 +56,7 @@ public class GameScreen extends AppCompatActivity {
         difficulty.setText(level);
 
         sprite = (ImageView) findViewById(R.id.sprite);
-        switch (imageOption) {
-        case "Chicken":
-            sprite.setImageResource(R.drawable.chicken);
-            break;
-        case "Duck":
-            sprite.setImageResource(R.drawable.duck);
-            break;
-        case "Rabbit":
-            sprite.setImageResource(R.drawable.rabbit);
-            break;
-        default:
-            break;
-        }
+        sprite.setImageResource(imageOption);
 
         playBtn = (Button) findViewById(R.id.playButton);
         playBtn.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +67,10 @@ public class GameScreen extends AppCompatActivity {
         });
     }
     public void playGame() {
-        Intent intent = new Intent(this, MapScreen.class);
-        startActivity(intent);
+        Intent send = new Intent(this, MapScreen.class);
+        send.putExtra("name", name);
+        send.putExtra("level", level);
+        send.putExtra("image", imageOption);
+        startActivity(send);
     }
 }

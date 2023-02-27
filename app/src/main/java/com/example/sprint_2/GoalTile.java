@@ -7,6 +7,9 @@ public class GoalTile extends Lane {
     }
 
     public GoalTile() {
-
+        tiles = new Tile[8];
+        for (int i = 0; i < 8; i++) {
+            tiles[i] = new Tile("GoalTile");
+        }
     }
 }
