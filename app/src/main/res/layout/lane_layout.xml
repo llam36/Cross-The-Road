@@ -2,17 +2,17 @@
 <android.widget.FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="67dp">
+    android:layout_height="66.364dp">
 
     <ImageView
-        android:id="@+id/idIVLane"
+        android:id="@+id/idIVTile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher" />
 
     <ImageView
         android:id="@+id/idIVSprite"
-        android:layout_width="35dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
         android:gravity="center"

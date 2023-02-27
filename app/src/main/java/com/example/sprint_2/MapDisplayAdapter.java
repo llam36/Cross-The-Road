@@ -9,49 +9,57 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class MapDisplayAdapter extends ArrayAdapter<Lane> {
-    public MapDisplayAdapter(@NonNull Context context, Lane[] lanes) {
-        super(context, 0, lanes);
+public class MapDisplayAdapter extends ArrayAdapter<Tile> {
+    private Map gameMap;
+    private int imageOption;
+    public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap, int imageOption) {
+        super(context, 0, tiles);
+        this.gameMap = gameMap;
+        this.imageOption = imageOption;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        View laneView = convertView;
-        if (laneView == null) {
+        View tileView = convertView;
+        if (tileView == null) {
             // Layout Inflater inflates each item to be displayed in GridView.
-            laneView = LayoutInflater.from(getContext()).inflate(R.layout.lane, parent, false);
+            tileView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.lane_layout, parent, false);
         }
 
-        Lane lane = getItem(position);
-        ImageView laneIV = laneView.findViewById(R.id.idIVLane);
+        Tile tile = getItem(position);
+        ImageView tileIV = tileView.findViewById(R.id.idIVTile);
 
-        int laneIVSrc;
-        switch (lane.getType()) {
-        case "river":
-            laneIVSrc = R.drawable.river;
+        int tileVSrc;
+        switch (tile.getType()) {
+        case "River":
+            tileVSrc = R.drawable.river;
             break;
-        case "road":
-            laneIVSrc = R.drawable.road;
+        case "Road":
+            tileVSrc = R.drawable.road;
             break;
-        case "safe tile":
-            laneIVSrc = R.drawable.safe_tile;
+        case "SafeTile":
+            tileVSrc = R.drawable.safe_tile;
             break;
-        case "goal tile":
-            laneIVSrc = R.drawable.goal_tile;
+        case "GoalTile":
+            tileVSrc = R.drawable.goal_tile;
             break;
         default:
-            laneIVSrc = 0;
+            tileVSrc = 0;
             break;
         }
-        laneIV.setImageResource(laneIVSrc);
+        tileIV.setImageResource(tileVSrc);
 
-        ImageView spriteIV = laneView.findViewById(R.id.idIVSprite);
-        spriteIV.setImageResource(R.drawable.sprite_chicken);
-        if (position == 0) {
+        ImageView spriteIV = tileView.findViewById(R.id.idIVSprite);
+
+        spriteIV.setImageResource(imageOption);
+        if (position == gameMap.getCurrentPlayerPosition()) {
             spriteIV.setVisibility(View.VISIBLE);
+        } else {
+            spriteIV.setVisibility(View.INVISIBLE);
         }
-        return laneView;
+        return tileView;
     }
 }
