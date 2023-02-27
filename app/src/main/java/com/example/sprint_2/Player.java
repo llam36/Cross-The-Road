@@ -38,6 +38,22 @@ public class Player implements Serializable {
     public String getLevel() {
         return level;
     }
+
+    public void setLevel(String level) {
+        switch (level) {
+            case "Easy":
+                this.lives = 10;
+                break;
+            case "Medium":
+                this.lives = 8;
+                break;
+            case "Hard":
+                this.lives = 6;
+                break;
+            default:
+                break;
+        }
+    }
     public int getLives() {
         return lives;
     }
@@ -58,7 +74,7 @@ public class Player implements Serializable {
         return imageOption;
     }
 
-    public void imageOption(int imageOption) {
+    public void setImageOption(int imageOption) {
         this.imageOption = imageOption;
     }
 

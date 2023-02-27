@@ -70,6 +70,7 @@ public class ConfigScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imageOption = R.drawable.chicken;
+                System.out.println(R.drawable.chicken);
             }
         });
 
@@ -78,6 +79,7 @@ public class ConfigScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imageOption = R.drawable.duck;
+                System.out.println(R.drawable.duck);
             }
         });
 
@@ -86,6 +88,7 @@ public class ConfigScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imageOption = R.drawable.rabbit;
+                System.out.println(R.drawable.rabbit);
             }
         });
 
@@ -106,7 +109,7 @@ public class ConfigScreen extends AppCompatActivity {
             public void onClick(View v) {
                 EditText nameText  = (EditText) findViewById(R.id.textName);
                 name = nameText.getText().toString();
-                if (isNullName(name) || isEmptyStringName(name) || isWhiteSpaceOnlyName(name)) {
+                if (player.isNullName(name) || player.isEmptyStringName(name) || player.isWhiteSpaceOnlyName(name)) {
                     AlertDialog nameDialog = alertBuilder.create();
                     nameDialog.setMessage("Please answer your name!");
                     nameDialog.show();

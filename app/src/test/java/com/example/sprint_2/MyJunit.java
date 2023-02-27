@@ -20,7 +20,7 @@ public class MyJunit {
     }
     @Test
     public void updatePosRightTest() {
-        int x = gameMap.getCurrentPlayerY();
+        int x = gameMap.getCurrentPlayerX();
         gameMap.updatePlayerLocationOnly("right");
         assertTrue(x+1 == gameMap.getCurrentPlayerX());
     }
