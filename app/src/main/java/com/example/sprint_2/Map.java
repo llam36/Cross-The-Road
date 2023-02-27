@@ -26,7 +26,7 @@ public class Map {
             for (int i = safeTileId + 1; i < 9; i++) {
                 lanes[i] = new River();
             }
-            lanes[10] =  new GoalTile();
+            lanes[0] =  new GoalTile();
         } else {
             // range for safe tile
             int lowerBound1 = 2;
@@ -51,7 +51,7 @@ public class Map {
             for (int i = safeTileId2 + 1; i < 9; i++) {
                 lanes[i] = new Road();
             }
-            lanes[10] =  new GoalTile();
+            lanes[0] =  new GoalTile();
         }
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
@@ -74,8 +74,16 @@ public class Map {
         return currentPlayerX;
     }
 
+    public void setCurrentPlayerX(int currentPlayerX) {
+        this.currentPlayerX = currentPlayerX;
+    }
+
     public int getCurrentPlayerY() {
         return currentPlayerY;
+    }
+
+    public void setCurrentPlayerY(int currentPlayerY) {
+        this.currentPlayerY = currentPlayerY;
     }
 
     public int getCurrentPlayerPosition() {
