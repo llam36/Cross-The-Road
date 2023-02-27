@@ -6,17 +6,17 @@ public class Player {
     private int pathToImage;
     public Player(String level, String name, int pathToImage) {
         switch (level) {
-            case "Easy":
-                this.lives = 10;
-                break;
-            case "Medium":
-                this.lives = 8;
-                break;
-            case "Hard":
-                this.lives = 6;;
-                break;
-            default:
-                break;
+        case "Easy":
+            this.lives = 10;
+            break;
+        case "Medium":
+            this.lives = 8;
+            break;
+        case "Hard":
+            this.lives = 6;
+            break;
+        default:
+            break;
         }
         this.name = name;
         this.pathToImage = pathToImage;

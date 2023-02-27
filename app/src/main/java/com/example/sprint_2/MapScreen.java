@@ -27,7 +27,8 @@ public class MapScreen extends AppCompatActivity {
 
         Tile[] mapAdapterArray = createMapAdapterArray(gameMap);
 
-        MapDisplayAdapter adapter = new MapDisplayAdapter(this, mapAdapterArray, gameMap, imageOption);
+        MapDisplayAdapter adapter = new MapDisplayAdapter(this,
+                mapAdapterArray, gameMap, imageOption);
         SwipeListener swipeDetection = new SwipeListener(gvLanesMap, gameMap, adapter);
 
         gvLanesMap.setAdapter(adapter);
