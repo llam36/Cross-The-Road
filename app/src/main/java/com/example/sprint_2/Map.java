@@ -50,7 +50,7 @@ public class Map {
                 lanes[i] = new River();
             }
             lanes[safeTileId2] =  new SafeTile();
-            for (int i = safeTileId2 + 1; i < 9; i++) {
+            for (int i = safeTileId2 + 1; i < 10; i++) {
                 lanes[i] = new Road();
             }
             lanes[0] =  new GoalTile();
