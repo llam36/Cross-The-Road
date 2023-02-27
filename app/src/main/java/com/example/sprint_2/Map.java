@@ -14,12 +14,13 @@ public class Map {
         if (difficulty.equals("Easy") || difficulty.equals("Medium")) {
             // range for safe tile
             int lowerBound = 3;
-            int higherBound = 7;
+            int higherBound = 8;
 
             //generate the map =
+            lanes[0] =  new GoalTile();
             int safeTileId = (int) Math.floor(Math.random()
                     * (higherBound - lowerBound + 1) + lowerBound);
-            for (int i = 0; i < safeTileId; i++) {
+            for (int i = 1; i < safeTileId; i++) {
                 lanes[i] = new Road();
             }
             lanes[safeTileId] =  new SafeTile();
@@ -36,11 +37,12 @@ public class Map {
             int higherBound2 = 7;
 
             //generate the map =
+            lanes[0] =  new GoalTile();
             int safeTileId1 = (int) Math.floor(Math.random()
                     * (higherBound1 - lowerBound1 + 1) + lowerBound1);
             int safeTileId2 = (int) Math.floor(Math.random()
                     * (higherBound2 - lowerBound2 + 1) + lowerBound2);
-            for (int i = 0; i < safeTileId1; i++) {
+            for (int i = 1; i < safeTileId1; i++) {
                 lanes[i] = new Road();
             }
             lanes[safeTileId1] =  new SafeTile();
