@@ -16,6 +16,7 @@ public class ThanhJunit {
     }
 
     public void difficulty_numLivesCorrect() {
+
     }
 
     public void spriteCheck() {
