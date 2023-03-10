@@ -27,7 +27,7 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.game_screen);
         player = (Player) getIntent().getSerializableExtra("player");
         name = player.getName();
-        level = player.getLevel();
+        level = getIntent().getStringExtra("level");
         imageOption = player.getImageOption();
 
 
@@ -35,7 +35,7 @@ public class GameScreen extends AppCompatActivity {
         playerName.setText(name);
 
         lives = (TextView) findViewById(R.id.startingLives);
-        lives.setText("Lives: " + player.getNumLife());
+        lives.setText("Lives: " + player.getLives());
 
 
         points = (TextView) findViewById(R.id.startingPoint);
@@ -58,6 +58,7 @@ public class GameScreen extends AppCompatActivity {
     public void playGame() {
         Intent send = new Intent(this, MapScreen.class);
         send.putExtra("player", player);
+        send.putExtra("level", level);
         startActivity(send);
     }
 }

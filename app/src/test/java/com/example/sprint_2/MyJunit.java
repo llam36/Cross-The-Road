@@ -6,22 +6,22 @@ import static org.junit.Assert.*;
 
 public class MyJunit {
 
-    private Map gameMap;
+    private Player player;
 
     @Before
     public void setUp() {
-        gameMap = new Map("Easy");
+        player = new Player();
     }
     @Test
     public void updatePosLeftTest() {
-        int x = gameMap.getCurrentPlayerX();
-        gameMap.updatePlayerLocationOnly("left");
-        assertTrue(x-1 == gameMap.getCurrentPlayerX());
+        int x = player.getCurrentPlayerX();
+        player.updatePlayerLocation("left");
+        assertTrue(x-1 == player.getCurrentPlayerX());
     }
     @Test
     public void updatePosRightTest() {
-        int x = gameMap.getCurrentPlayerX();
-        gameMap.updatePlayerLocationOnly("right");
-        assertTrue(x+1 == gameMap.getCurrentPlayerX());
+        int x = player.getCurrentPlayerX();
+        player.updatePlayerLocation("right");
+        assertTrue(x+1 == player.getCurrentPlayerX());
     }
 }

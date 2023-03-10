@@ -21,9 +21,9 @@ public class MapScreen extends AppCompatActivity {
 
         player = (Player) getIntent().getSerializableExtra("player");
         imageOption = player.getImageOption();
-        level = player.getLevel();
+        level = getIntent().getStringExtra("level");
 
-        Map gameMap = new Map(level);
+        Map gameMap = new Map(level, player);
 
         Tile[] mapAdapterArray = createMapAdapterArray(gameMap);
 

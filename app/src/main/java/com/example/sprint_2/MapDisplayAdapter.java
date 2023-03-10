@@ -55,7 +55,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         ImageView spriteIV = tileView.findViewById(R.id.idIVSprite);
 
         spriteIV.setImageResource(imageOption);
-        if (position == gameMap.getCurrentPlayerPosition()) {
+        if (position == gameMap.getPlayer().getCurrentPlayerPosition()) {
             spriteIV.setVisibility(View.VISIBLE);
         } else {
             spriteIV.setVisibility(View.INVISIBLE);

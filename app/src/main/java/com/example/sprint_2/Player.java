@@ -3,16 +3,14 @@ package com.example.sprint_2;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    private String level;
     private int lives;
     private String name;
     private int imageOption;
+    private int currentPlayerX;
+    private int currentPlayerY;
 
     public Player() {
-        this.level = "";
-        this.lives = 0;
-        this.name = "";
-        this.imageOption = 0;
+        this("Easy", "Player", 1);
     }
 
 
@@ -30,30 +28,24 @@ public class Player implements Serializable {
         default:
             break;
         }
-        this.level = level;
         this.name = name;
         this.imageOption = imageOption;
+        this.currentPlayerX = 4;
+        this.currentPlayerY = 9;
     }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        switch (level) {
-        case "Easy":
-            this.lives = 10;
-            break;
-        case "Medium":
-            this.lives = 8;
-            break;
-        case "Hard":
-            this.lives = 6;
-            break;
-        default:
-            break;
+    public void updatePlayerLocation(String s) {
+        if (s.equals("left") && currentPlayerX > 0) {
+            currentPlayerX -= 1;
+        } else if (s.equals("right") && currentPlayerX < 7) {
+            currentPlayerX += 1;
+        } else if (s.equals("up") && currentPlayerY > 0) {
+            currentPlayerY -= 1;
+        } else if (s.equals("down") && currentPlayerY < 9) {
+            currentPlayerY += 1;
         }
     }
+
     public int getLives() {
         return lives;
     }
@@ -78,9 +70,26 @@ public class Player implements Serializable {
         this.imageOption = imageOption;
     }
 
-    public int getNumLife() {
-        return lives;
+    public int getCurrentPlayerX() {
+        return currentPlayerX;
     }
+
+    public void setCurrentPlayerX(int currentPlayerX) {
+        this.currentPlayerX = currentPlayerX;
+    }
+
+    public int getCurrentPlayerY() {
+        return currentPlayerY;
+    }
+
+    public void setCurrentPlayerY(int currentPlayerY) {
+        this.currentPlayerY = currentPlayerY;
+    }
+
+    public int getCurrentPlayerPosition() {
+        return 8 * currentPlayerY + currentPlayerX;
+    }
+
 
     public boolean isEmptyStringName(String name) {
         return name.equals("");
@@ -93,5 +102,6 @@ public class Player implements Serializable {
     public boolean isNullName(String name) {
         return name == null;
     }
+
 
 }

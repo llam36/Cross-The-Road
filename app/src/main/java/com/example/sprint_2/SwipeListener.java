@@ -28,10 +28,6 @@ public class SwipeListener implements View.OnTouchListener {
                             } else {
                                 gameMap.updatePlayerLocation("left", adapter);
                             }
-                            System.out.println("current player x: "
-                                    + gameMap.getCurrentPlayerX());
-                            System.out.println("current player y: "
-                                    + gameMap.getCurrentPlayerY());
                             return true;
                         }
                     } else {
@@ -42,10 +38,6 @@ public class SwipeListener implements View.OnTouchListener {
                             } else {
                                 gameMap.updatePlayerLocation("up", adapter);
                             }
-                            System.out.println("current player x: "
-                                    + gameMap.getCurrentPlayerX());
-                            System.out.println("current player y: "
-                                    + gameMap.getCurrentPlayerY());
                             return true;
                         }
 

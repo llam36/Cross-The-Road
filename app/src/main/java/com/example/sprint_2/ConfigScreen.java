@@ -128,25 +128,13 @@ public class ConfigScreen extends AppCompatActivity {
                             + level + " and image " + imageOption);
                     confirmDialog.setTitle("Confirmation");
                     confirmDialog.show();
-                    
-
-                    confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
-                            new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Intent send = new Intent(ConfigScreen.this, GameScreen.class);
-                                send.putExtra("name", name);
-                                send.putExtra("level", level);
-                                send.putExtra("image", imageOption);
-                                startActivity(send);
-                            }
-                        });
-
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent send = new Intent(ConfigScreen.this, GameScreen.class);
                                     player = new Player(level, name, imageOption);
                                     send.putExtra("player", player);
+                                    send.putExtra("level", level);
                                     startActivity(send);
                                 }
                             });

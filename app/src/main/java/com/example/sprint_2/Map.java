@@ -3,11 +3,11 @@ package com.example.sprint_2;
 public class Map {
 
     private final Lane[] lanes;
-    private int currentPlayerX = 4;
-    private int currentPlayerY = 9;
+    private Player player;
     private String difficulty;
 
-    public Map(String difficulty) {
+    public Map(String difficulty, Player player) {
+        this.player = player;
         lanes = new Lane[10];
         this.difficulty = difficulty;
 
@@ -56,41 +56,12 @@ public class Map {
             lanes[0] =  new GoalTile();
         }
     }
-    public void updatePlayerLocationOnly(String s) {
-        if (s.equals("left") && currentPlayerX > 0) {
-            currentPlayerX -= 1;
-        } else if (s.equals("right") && currentPlayerX < 7) {
-            currentPlayerX += 1;
-        } else if (s.equals("up") && currentPlayerY > 0) {
-            currentPlayerY -= 1;
-        } else if (s.equals("down") && currentPlayerY < 9) {
-            currentPlayerY += 1;
-        }
-    }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
-        updatePlayerLocationOnly(s);
+        player.updatePlayerLocation(s);
         adapter.notifyDataSetChanged();
     }
 
-    public int getCurrentPlayerX() {
-        return currentPlayerX;
-    }
-
-    public void setCurrentPlayerX(int currentPlayerX) {
-        this.currentPlayerX = currentPlayerX;
-    }
-
-    public int getCurrentPlayerY() {
-        return currentPlayerY;
-    }
-
-    public void setCurrentPlayerY(int currentPlayerY) {
-        this.currentPlayerY = currentPlayerY;
-    }
-
-    public int getCurrentPlayerPosition() {
-        return 8 * currentPlayerY + currentPlayerX;
-    }
+    public Player getPlayer() { return player; }
 
     public String getDifficulty() {
         return difficulty;

@@ -20,11 +20,11 @@ public class ThanhJunit {
     }
     @Test
     public void checkPlayerLife() {
-        assertTrue(player.getNumLife() == 6);
-        player.setLevel("Medium");
-        assertTrue(player.getNumLife() == 8);
-        player.setLevel("Easy");
-        assertTrue(player.getNumLife() == 10);
+        assertTrue(player.getLives() == 6);
+        player = new Player("Medium", "testName", R.drawable.chicken);
+        assertTrue(player.getLives() == 8);
+        player = new Player("Easy", "testName", R.drawable.chicken);
+        assertTrue(player.getLives() == 10);
     }
     @Test
     public void checkPlayerSprite() {

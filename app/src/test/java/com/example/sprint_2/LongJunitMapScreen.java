@@ -11,37 +11,38 @@ import org.junit.Test;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class LongJunitMapScreen {
-    private Map gameMap;
+    private Player player;
 
     @Before
     public void setUp() {
-        gameMap = new Map("Easy");
+
+        player = new Player();
     }
 
     @Test
     public void checkPlayerOffLeftScreen() {
-        gameMap.setCurrentPlayerX(0);
-        gameMap.updatePlayerLocationOnly("left");
-        assertEquals(0, gameMap.getCurrentPlayerX());
+        player.setCurrentPlayerX(0);
+        player.updatePlayerLocation("left");
+        assertEquals(0, player.getCurrentPlayerX());
     }
     @Test
     public void checkPlayerOffRightScreen() {
-        gameMap.setCurrentPlayerX(7);
-        gameMap.updatePlayerLocationOnly("right");
-        assertEquals(7, gameMap.getCurrentPlayerX());
+        player.setCurrentPlayerX(7);
+        player.updatePlayerLocation("right");
+        assertEquals(7, player.getCurrentPlayerX());
     }
 
     @Test
     public void checkPlayerOffTopScreen() {
-        gameMap.setCurrentPlayerY(0);
-        gameMap.updatePlayerLocationOnly("up");
-        assertEquals(0, gameMap.getCurrentPlayerY());
+        player.setCurrentPlayerY(0);
+        player.updatePlayerLocation("up");
+        assertEquals(0, player.getCurrentPlayerY());
     }
 
     @Test
     public void checkPlayerOffBottomScreen() {
-        gameMap.setCurrentPlayerY(9);
-        gameMap.updatePlayerLocationOnly("down");
-        assertEquals(9, gameMap.getCurrentPlayerY());
+        player.setCurrentPlayerY(9);
+        player.updatePlayerLocation("down");
+        assertEquals(9, player.getCurrentPlayerY());
     }
 }
