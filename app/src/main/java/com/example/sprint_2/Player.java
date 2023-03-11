@@ -102,6 +102,4 @@ public class Player implements Serializable {
     public boolean isNullName(String name) {
         return name == null;
     }
-
-
 }
