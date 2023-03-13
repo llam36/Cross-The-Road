@@ -18,6 +18,7 @@ public class Vehicle {
         this.posX = posX;
         this.posY = posY;
         this.imageId = imageId;
+        this.velocity = velocity;
         this.createTime = timestamp.getTime();
 
 

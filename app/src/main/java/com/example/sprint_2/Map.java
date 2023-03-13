@@ -10,51 +10,24 @@ public class Map {
         this.player = player;
         lanes = new Lane[10];
         this.difficulty = difficulty;
+        // range for safe tile
+        int lowerBound = 3;
+        int higherBound = 6;
 
-        if (difficulty.equals("Easy") || difficulty.equals("Medium")) {
-            // range for safe tile
-            int lowerBound = 3;
-            int higherBound = 7;
+        //generate the map =
+        lanes[0] =  new GoalTile();
+        int safeTileId = (int) Math.floor(Math.random()
+                * (higherBound - lowerBound + 1) + lowerBound);
 
-            //generate the map =
-            lanes[0] =  new GoalTile();
-            int safeTileId = (int) Math.floor(Math.random()
-                    * (higherBound - lowerBound + 1) + lowerBound);
-            for (int i = 1; i < safeTileId; i++) {
-                lanes[i] = new River();
-            }
-            lanes[safeTileId] =  new SafeTile();
-            for (int i = safeTileId + 1; i < 10; i++) {
-                lanes[i] = new Road(i);
-            }
-            lanes[0] =  new GoalTile();
-        } else {
-            // range for safe tile
-            int lowerBound1 = 2;
-            int higherBound1 = 4;
-
-            int lowerBound2 = 6;
-            int higherBound2 = 7;
-
-            //generate the map =
-            lanes[0] =  new GoalTile();
-            int safeTileId1 = (int) Math.floor(Math.random()
-                    * (higherBound1 - lowerBound1 + 1) + lowerBound1);
-            int safeTileId2 = (int) Math.floor(Math.random()
-                    * (higherBound2 - lowerBound2 + 1) + lowerBound2);
-            for (int i = 1; i < safeTileId1; i++) {
-                lanes[i] = new Road(i);
-            }
-            lanes[safeTileId1] =  new SafeTile();
-            for (int i = safeTileId1 + 1; i < safeTileId2; i++) {
-                lanes[i] = new River();
-            }
-            lanes[safeTileId2] =  new SafeTile();
-            for (int i = safeTileId2 + 1; i < 10; i++) {
-                lanes[i] = new Road(i);
-            }
-            lanes[0] =  new GoalTile();
+        for (int i = 1; i < safeTileId; i++) {
+            lanes[i] = new River();
         }
+        lanes[safeTileId] =  new SafeTile();
+        for (int i = safeTileId + 1; i < 9; i++) {
+            lanes[i] = new Road(i);
+        }
+        lanes[9] =  new SafeTile();
+
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
@@ -86,5 +59,29 @@ public class Map {
 
     public void setLanes(int i, Lane data) {
         lanes[i] = data;
+    }
+
+    public Road[] getRoad() {
+        Road[] list = new Road[10];
+        int count = 0;
+        for (int i = 0; i < lanes.length; i++) {
+            if (lanes[i].getType().equals("Road")) {
+                list[count] = (Road) lanes[i];
+                ++count;
+            }
+        }
+        return list;
+    }
+
+    public River[] getRiver() {
+        River[] list = new River[10];
+        int count = 0;
+        for (int i = 0; i < lanes.length; i++) {
+            if (lanes[i].getType().equals("River")) {
+                list[count] = (River) lanes[i];
+                ++count;
+            }
+        }
+        return list;
     }
 }

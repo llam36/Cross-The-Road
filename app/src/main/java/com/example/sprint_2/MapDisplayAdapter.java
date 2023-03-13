@@ -66,12 +66,27 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             spriteIV.setVisibility(View.INVISIBLE);
         }
 
-        //setting visibility of vehical and its image display
+        //setting visibility of vehicle and its image display
         ImageView vehicalIV = tileView.findViewById(R.id.vehical);
-        vehicalIV.setImageResource(imageOption);
-        //
+        vehicalIV.setImageResource(R.drawable.car);
+        //System.out.println("Image Option: " + imageOption);
+        Road[] roadList = gameMap.getRoad();
+        vehicalIV.setVisibility(View.INVISIBLE);
 
-
+        for (int i=0; i < roadList.length; i++ ) {
+            if (roadList[i] == null) {
+                break;
+            }
+            Vehicle[] vehicleList = roadList[i].getVehicles();
+            for (int j=0; j < vehicleList.length; j++) {
+                if (vehicleList[j] == null) {
+                    break;
+                }
+                if (vehicleList[j].getPos() == position) {
+                    vehicalIV.setVisibility(View.VISIBLE);
+                }
+            }
+        }
         return tileView;
     }
 }

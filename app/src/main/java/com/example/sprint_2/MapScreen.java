@@ -41,13 +41,16 @@ public class MapScreen extends AppCompatActivity {
     }
 
     public void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMSec, 1000) {
+        countDownTimer = new CountDownTimer(timeLeftInMSec, 200) {
             @Override
             public void onTick(long l) {
                 timeLeftInMSec = l;
-                gameMap.updatePlayerLocation("up", adapter);
+                adapter.notifyDataSetChanged();
+                //gameMap.updatePlayerLocation("up", adapter);
             }
 
+
+            //TODO: Add logic for game over later
             @Override
             public void onFinish() {
                 System.out.println("Game over");
