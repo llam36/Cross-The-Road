@@ -66,4 +66,14 @@ public class Road extends Lane {
     public ArrayList<Vehicle> getVehicles() {
         return vehicle;
     }
+
+    public String getVehicleType() {
+        if (vehicleType == 1) {
+            return "car";
+        } else if (vehicleType == 2) {
+            return "truck";
+        } else {
+            return "motocycle";
+        }
+    }
 }
