@@ -37,6 +37,8 @@ public class SwipeListener implements View.OnTouchListener {
                                 gameMap.updatePlayerLocation("down", adapter);
                             } else {
                                 gameMap.updatePlayerLocation("up", adapter);
+                                gameMap.getPlayer().updateScore(gameMap,"up");
+
                             }
                             return true;
                         }
