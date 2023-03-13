@@ -13,7 +13,7 @@ public class Map {
         this.difficulty = difficulty;
         // range for safe tile
         int lowerBound = 3;
-        int higherBound = 6;
+        int higherBound = 5;
 
         //generate the map =
         lanes[0] =  new GoalTile();
@@ -24,8 +24,22 @@ public class Map {
             lanes[i] = new River();
         }
         lanes[safeTileId] =  new SafeTile();
+        int count = 0;
         for (int i = safeTileId + 1; i < 9; i++) {
-            lanes[i] = new Road(i);
+            if (count == 0) {
+                lanes[i] = new Road(i, difficulty, 1);
+                ++ count;
+            } else if (count == 1) {
+                lanes[i] = new Road(i, difficulty, 2);
+                ++ count;
+            } else if (count == 2) {
+                lanes[i] = new Road(i, difficulty, 3);
+                ++ count;
+            } else {
+                int randomType = (int) Math.floor(Math.random()
+                        * (3 - 1 + 1) + 1);
+                lanes[i] = new Road(i, difficulty, randomType);
+            }
         }
         lanes[9] =  new SafeTile();
 

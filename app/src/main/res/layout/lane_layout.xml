@@ -21,12 +21,11 @@
     </ImageView>
 
     <ImageView
-        android:id="@+id/vehical"
+        android:id="@+id/vehicle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
         android:gravity="center"
-        android:layout_marginLeft="9dp"
         android:src="@mipmap/ic_launcher">
     </ImageView>
 
