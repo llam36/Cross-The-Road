@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
 import android.widget.GridView;
 
 public class MapScreen extends AppCompatActivity {
@@ -12,6 +13,11 @@ public class MapScreen extends AppCompatActivity {
     private int imageOption;
 
     private Player player;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMSec = 9000000;
+
+    private Map gameMap;
+    private MapDisplayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +29,31 @@ public class MapScreen extends AppCompatActivity {
         imageOption = player.getImageOption();
         level = getIntent().getStringExtra("level");
 
-        Map gameMap = new Map(level, player);
+        gameMap = new Map(level, player);
 
         Tile[] mapAdapterArray = createMapAdapterArray(gameMap);
 
-        MapDisplayAdapter adapter = new MapDisplayAdapter(this,
+        adapter = new MapDisplayAdapter(this,
                 mapAdapterArray, gameMap, imageOption);
         SwipeListener swipeDetection = new SwipeListener(gvLanesMap, gameMap, adapter);
 
         gvLanesMap.setAdapter(adapter);
+        startTimer();
+    }
 
+    public void startTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMSec, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMSec = l;
+                gameMap.updatePlayerLocation("up", adapter);
+            }
+
+            @Override
+            public void onFinish() {
+                System.out.println("Game over");
+            }
+        }.start();
     }
     public Tile[] createMapAdapterArray(Map gameMap) {
         Tile[] tiles = new Tile[80];
