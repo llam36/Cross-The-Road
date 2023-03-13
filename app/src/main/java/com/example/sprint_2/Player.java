@@ -3,11 +3,13 @@ package com.example.sprint_2;
 import java.io.Serializable;
 
 public class Player implements Serializable {
+
+    private final int gridHeight = 8;
     private int lives;
     private String name;
     private int imageOption;
-    private int currentPlayerX;
-    private int currentPlayerY;
+    private int posX;
+    private int posY;
 
     public Player() {
         this("Easy", "Player", 1);
@@ -30,19 +32,19 @@ public class Player implements Serializable {
         }
         this.name = name;
         this.imageOption = imageOption;
-        this.currentPlayerX = 4;
-        this.currentPlayerY = 9;
+        this.posX = 4;
+        this.posY = 9;
     }
 
     public void updatePlayerLocation(String s) {
-        if (s.equals("left") && currentPlayerX > 0) {
-            currentPlayerX -= 1;
-        } else if (s.equals("right") && currentPlayerX < 7) {
-            currentPlayerX += 1;
-        } else if (s.equals("up") && currentPlayerY > 0) {
-            currentPlayerY -= 1;
-        } else if (s.equals("down") && currentPlayerY < 9) {
-            currentPlayerY += 1;
+        if (s.equals("left") && posX > 0) {
+            posX -= 1;
+        } else if (s.equals("right") && posX < 7) {
+            posX += 1;
+        } else if (s.equals("up") && posY > 0) {
+            posY -= 1;
+        } else if (s.equals("down") && posY < 9) {
+            posY += 1;
         }
     }
 
@@ -70,24 +72,24 @@ public class Player implements Serializable {
         this.imageOption = imageOption;
     }
 
-    public int getCurrentPlayerX() {
-        return currentPlayerX;
+    public int getPosX() {
+        return posX;
     }
 
-    public void setCurrentPlayerX(int currentPlayerX) {
-        this.currentPlayerX = currentPlayerX;
+    public void setPosX(int currentPlayerX) {
+        this.posX = currentPlayerX;
     }
 
-    public int getCurrentPlayerY() {
-        return currentPlayerY;
+    public int getPosY() {
+        return posY;
     }
 
-    public void setCurrentPlayerY(int currentPlayerY) {
-        this.currentPlayerY = currentPlayerY;
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
-    public int getCurrentPlayerPosition() {
-        return 8 * currentPlayerY + currentPlayerX;
+    public int getPos() {
+        return gridHeight * posY + posX;
     }
 
 
