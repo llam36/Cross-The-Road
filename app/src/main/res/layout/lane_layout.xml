@@ -5,13 +5,13 @@
     android:layout_height="66.364dp">
 
     <ImageView
-        android:id="@+id/idIVTile"
+        android:id="@+id/IVTile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher" />
 
     <ImageView
-        android:id="@+id/idIVSprite"
+        android:id="@+id/IVSprite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"

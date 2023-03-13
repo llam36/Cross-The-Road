@@ -24,7 +24,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        //TODO: Comment this
+        //tileView: contains the images
         View tileView = convertView;
         if (tileView == null) {
             // Layout Inflater inflates each item to be displayed in GridView.
@@ -36,7 +36,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         Tile tile = getItem(position);
 
         //setting image display for the tile
-        ImageView tileIV = tileView.findViewById(R.id.idIVTile);
+        ImageView tileIV = tileView.findViewById(R.id.IVTile);
         int tileVSrc;
         switch (tile.getType()) {
         case "River":
@@ -58,7 +58,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         tileIV.setImageResource(tileVSrc);
 
         //setting visibility of spriteIV and its image display
-        ImageView spriteIV = tileView.findViewById(R.id.idIVSprite);
+        ImageView spriteIV = tileView.findViewById(R.id.IVSprite);
         spriteIV.setImageResource(imageOption);
         if (position == gameMap.getPlayer().getPos()) {
             spriteIV.setVisibility(View.VISIBLE);
@@ -68,12 +68,9 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
 
         //setting visibility of vehical and its image display
         ImageView vehicalIV = tileView.findViewById(R.id.vehical);
-        spriteIV.setImageResource(imageOption);
-        if (position == gameMap.getPlayer().getPos()) {
-            spriteIV.setVisibility(View.VISIBLE);
-        } else {
-            spriteIV.setVisibility(View.INVISIBLE);
-        }
+        vehicalIV.setImageResource(imageOption);
+        //
+
 
         return tileView;
     }

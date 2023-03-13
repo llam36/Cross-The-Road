@@ -25,7 +25,7 @@ public class Map {
             }
             lanes[safeTileId] =  new SafeTile();
             for (int i = safeTileId + 1; i < 10; i++) {
-                lanes[i] = new Road();
+                lanes[i] = new Road(i);
             }
             lanes[0] =  new GoalTile();
         } else {
@@ -43,7 +43,7 @@ public class Map {
             int safeTileId2 = (int) Math.floor(Math.random()
                     * (higherBound2 - lowerBound2 + 1) + lowerBound2);
             for (int i = 1; i < safeTileId1; i++) {
-                lanes[i] = new Road();
+                lanes[i] = new Road(i);
             }
             lanes[safeTileId1] =  new SafeTile();
             for (int i = safeTileId1 + 1; i < safeTileId2; i++) {
@@ -51,13 +51,18 @@ public class Map {
             }
             lanes[safeTileId2] =  new SafeTile();
             for (int i = safeTileId2 + 1; i < 10; i++) {
-                lanes[i] = new Road();
+                lanes[i] = new Road(i);
             }
             lanes[0] =  new GoalTile();
         }
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void updateVehicleLocation(MapDisplayAdapter adapter) {
+
         adapter.notifyDataSetChanged();
     }
 
