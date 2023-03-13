@@ -1,4 +1,5 @@
 package com.example.sprint_2;
+import java.util.ArrayList;
 
 public class Map {
 
@@ -61,25 +62,21 @@ public class Map {
         lanes[i] = data;
     }
 
-    public Road[] getRoad() {
-        Road[] list = new Road[10];
-        int count = 0;
+    public ArrayList<Road> getRoad() {
+        ArrayList<Road> list = new ArrayList<Road>();
         for (int i = 0; i < lanes.length; i++) {
             if (lanes[i].getType().equals("Road")) {
-                list[count] = (Road) lanes[i];
-                ++count;
+                list.add((Road) lanes[i]);
             }
         }
         return list;
     }
 
-    public River[] getRiver() {
-        River[] list = new River[10];
-        int count = 0;
+    public ArrayList<River> getRiver() {
+        ArrayList<River> list = new ArrayList<River>();
         for (int i = 0; i < lanes.length; i++) {
-            if (lanes[i].getType().equals("River")) {
-                list[count] = (River) lanes[i];
-                ++count;
+            if (lanes[i].getType().equals("Road")) {
+                list.add((River) lanes[i]);
             }
         }
         return list;

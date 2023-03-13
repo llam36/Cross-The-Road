@@ -1,9 +1,10 @@
 package com.example.sprint_2;
+import java.util.ArrayList;
 
 public class Road extends Lane {
     private int laneLength = 8;
     private int posY;
-    Vehicle[] vehicle;
+    ArrayList<Vehicle> vehicle;
     public Road(int posY) {
         this.posY = posY;
         tiles = new Tile[8];
@@ -17,20 +18,20 @@ public class Road extends Lane {
 
         int numVehicle = (int) Math.floor(Math.random()
                 * (higherBound - lowerBound + 1) + lowerBound);
-        vehicle = new Vehicle[3];
+        vehicle = new ArrayList<Vehicle>();
         if (numVehicle == 1) {
             lowerBound = 0;
             higherBound = 7;
             int posX = (int) Math.floor(Math.random()
                 * (higherBound - lowerBound + 1) + lowerBound);
-            vehicle[0] = new Vehicle(posX, posY, 1, 1000);
+            vehicle.add(new Vehicle(posX, posY, 1, 1000));
         } else if (numVehicle == 2) {
-            vehicle[0] = new Vehicle(1, posY, 1, 1000);
-            vehicle[1] = new Vehicle(5, posY, 1, 1000);
+            vehicle.add(new Vehicle(1, posY, 1, 1000));
+            vehicle.add(new Vehicle(5, posY, 1, 1000));
         } else if (numVehicle == 3) {
-            vehicle[0] = new Vehicle(0, posY, 1, 1000);
-            vehicle[1] = new Vehicle(4, posY, 1, 1000);
-            vehicle[2] = new Vehicle(7, posY, 1, 1000);
+            vehicle.add(new Vehicle(0, posY, 1, 1000));
+            vehicle.add(new Vehicle(3, posY, 1, 1000));
+            vehicle.add(new Vehicle(6, posY, 1, 1000));
         }
     }
     @Override
@@ -40,14 +41,14 @@ public class Road extends Lane {
 
     public int[] getVehiclesPos() {
         int[] list = new int[3];
-        for(int i = 0; i <= vehicle.length; i++) {
-            Vehicle currentVehicle = vehicle[i];
+        for(int i = 0; i <= vehicle.size(); i++) {
+            Vehicle currentVehicle = vehicle.get(i);
             list[i] = currentVehicle.getPos();
         }
         return list;
     }
 
-    public Vehicle[] getVehicles() {
+    public ArrayList<Vehicle> getVehicles() {
         return vehicle;
     }
 }

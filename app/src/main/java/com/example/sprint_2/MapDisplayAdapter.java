@@ -1,4 +1,5 @@
 package com.example.sprint_2;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -70,19 +71,13 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         ImageView vehicalIV = tileView.findViewById(R.id.vehical);
         vehicalIV.setImageResource(R.drawable.car);
         //System.out.println("Image Option: " + imageOption);
-        Road[] roadList = gameMap.getRoad();
+        ArrayList<Road> roadList = gameMap.getRoad();
         vehicalIV.setVisibility(View.INVISIBLE);
 
-        for (int i=0; i < roadList.length; i++ ) {
-            if (roadList[i] == null) {
-                break;
-            }
-            Vehicle[] vehicleList = roadList[i].getVehicles();
-            for (int j=0; j < vehicleList.length; j++) {
-                if (vehicleList[j] == null) {
-                    break;
-                }
-                if (vehicleList[j].getPos() == position) {
+        for (int i=0; i < roadList.size(); i++ ) {
+            ArrayList<Vehicle> vehicleList = roadList.get(i).getVehicles();
+            for (int j=0; j < vehicleList.size(); j++) {
+                if (vehicleList.get(j).getPos() == position) {
                     vehicalIV.setVisibility(View.VISIBLE);
                 }
             }
