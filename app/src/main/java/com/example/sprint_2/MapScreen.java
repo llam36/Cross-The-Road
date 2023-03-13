@@ -27,6 +27,7 @@ public class MapScreen extends AppCompatActivity {
 
         Tile[] mapAdapterArray = createMapAdapterArray(gameMap);
 
+
         MapDisplayAdapter adapter = new MapDisplayAdapter(this,
                 mapAdapterArray, gameMap, imageOption);
         SwipeListener swipeDetection = new SwipeListener(gvLanesMap, gameMap, adapter);
@@ -34,6 +35,8 @@ public class MapScreen extends AppCompatActivity {
         gvLanesMap.setAdapter(adapter);
 
     }
+
+    // convert from a 2d array from class Map to 1d array for class MapDisplayAdapter
     public Tile[] createMapAdapterArray(Map gameMap) {
         Tile[] tiles = new Tile[80];
         for (int i = 0; i < gameMap.getLanes().length; i++) {

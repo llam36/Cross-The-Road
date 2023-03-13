@@ -14,14 +14,14 @@ public class MyJunit {
     }
     @Test
     public void updatePosLeftTest() {
-        int x = player.getCurrentPlayerX();
+        int x = player.getPosX();
         player.updatePlayerLocation("left");
-        assertTrue(x-1 == player.getCurrentPlayerX());
+        assertTrue(x-1 == player.getPosX());
     }
     @Test
     public void updatePosRightTest() {
-        int x = player.getCurrentPlayerX();
+        int x = player.getPosX();
         player.updatePlayerLocation("right");
-        assertTrue(x+1 == player.getCurrentPlayerX());
+        assertTrue(x+1 == player.getPosX());
     }
 }

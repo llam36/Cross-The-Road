@@ -14,15 +14,15 @@ public class PranatiJunit {
     }
     @Test
     public void updatePosUpTest() {
-        int y = player.getCurrentPlayerY();
+        int y = player.getPosY();
         player.updatePlayerLocation("up");
-        assertTrue(y-1 == player.getCurrentPlayerY());
+        assertTrue(y-1 == player.getPosY());
     }
     @Test
     public void updatePosDownTest() {
         player.updatePlayerLocation("up");
-        int y = player.getCurrentPlayerY();
+        int y = player.getPosY();
         player.updatePlayerLocation("down");
-        assertTrue(y+1 == player.getCurrentPlayerY());
+        assertTrue(y+1 == player.getPosY());
     }
 }
