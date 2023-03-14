@@ -11,4 +11,7 @@ public class SafeTile extends Lane {
     public String getType() {
         return "SafeTile";
     }
+    public String getVehicleType() {
+        return "null";
+    }
 }
