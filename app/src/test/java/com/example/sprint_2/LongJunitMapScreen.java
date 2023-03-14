@@ -12,11 +12,12 @@ import org.junit.Test;
  */
 public class LongJunitMapScreen {
     private Player player;
+    private Map map;
 
     @Before
     public void setUp() {
-
-        player = new Player();
+        player = new Player("Hard","MyName",0);
+        map = new Map("Hard", player);
     }
 
     @Test
@@ -44,5 +45,24 @@ public class LongJunitMapScreen {
         player.setPosY(9);
         player.updatePlayerLocation("down");
         assertEquals(9, player.getPosY());
+    }
+
+    @Test
+    public void checkScoreUpNotFirstTimeOnTile() {
+        int score = map.getPlayer().getScore() + 1;
+        map.getPlayer().updateScore(map, "up");
+        map.getPlayer().updateScore(map, "down");
+        map.getPlayer().updateScore(map, "up");
+        assertEquals(score, map.getPlayer().getScore());
+    }
+    @Test
+    public void checkScorePassCar() {
+        //move player to car lane to test score update
+        while (!map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("car")) {
+            map.getPlayer().updatePlayerLocation("up");
+        }
+        int score = player.getScore() + 2;
+        map.getPlayer().updateScore(map, "up");
+        assertEquals(score, player.getScore());
     }
 }
