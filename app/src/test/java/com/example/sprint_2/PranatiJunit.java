@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 public class PranatiJunit {
 
     private Player player;
+    private Map map;
 
     @Before
     public void setUp() {
@@ -24,5 +25,19 @@ public class PranatiJunit {
         int y = player.getPosY();
         player.updatePlayerLocation("down");
         assertTrue(y+1 == player.getPosY());
+    }
+
+
+    @Test
+    public void checkTheScoreLeft() {
+        int x = player.getScore();
+        player.updateScore(map,"left");
+        assertEquals(x,player.getScore());
+    }
+    @Test
+    public void checkTheScoreRight() {
+        int x = player.getScore();
+        player.updateScore(map,"right");
+        assertEquals(x,player.getScore());
     }
 }
