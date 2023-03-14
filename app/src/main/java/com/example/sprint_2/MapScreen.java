@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
+import android.telecom.TelecomManager;
 import android.widget.GridView;
+import android.widget.TextView;
 
 public class MapScreen extends AppCompatActivity {
     private String name;
@@ -46,7 +48,8 @@ public class MapScreen extends AppCompatActivity {
             public void onTick(long l) {
                 timeLeftInMSec = l;
                 adapter.notifyDataSetChanged();
-                //gameMap.updatePlayerLocation("up", adapter);
+                TextView score = findViewById(R.id.score);
+                score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
             }
 
 
