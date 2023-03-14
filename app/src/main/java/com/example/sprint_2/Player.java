@@ -16,7 +16,6 @@ public class Player implements Serializable {
     public Player() {
         this("Easy", "Player", 1);
         previousLocation = new ArrayList<Integer>();
-
     }
 
 
@@ -125,7 +124,7 @@ public class Player implements Serializable {
                     [map.getPlayer().getPosY()].getVehicleType().equals("truck")) {
                 score += 3;
             } else if (map.getLanes()
-                    [map.getPlayer().getPosY()].getVehicleType().equals("motocycle")) {
+                    [map.getPlayer().getPosY()].getVehicleType().equals("motorcycle")) {
                 score += 4;
             } else {
                 score++;

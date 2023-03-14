@@ -50,7 +50,6 @@ public class Map {
     }
 
     public void updateVehicleLocation(MapDisplayAdapter adapter) {
-
         adapter.notifyDataSetChanged();
     }
 

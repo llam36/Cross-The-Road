@@ -137,9 +137,12 @@ public class ConfigScreen extends AppCompatActivity {
                                     send.putExtra("level", level);
                                     startActivity(send);
                                 }
-                            });       
+                            });
+
+                    
                 }
             }
+
         });
     }
 }

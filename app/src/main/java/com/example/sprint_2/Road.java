@@ -73,7 +73,7 @@ public class Road extends Lane {
         } else if (vehicleType == 2) {
             return "truck";
         } else {
-            return "motocycle";
+            return "motorcycle";
         }
     }
 }
