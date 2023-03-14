@@ -40,6 +40,10 @@ public class Vehicle {
 
     }
 
+    public int getVelocity() {
+        return velocity;
+    }
+
     public int getImageId() {
         return imageId;
     }
