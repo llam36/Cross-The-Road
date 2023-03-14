@@ -121,7 +121,18 @@ public class Player implements Serializable {
         }
         if (s.equals("up") && firstTime) {
             previousLocation.add(map.getPlayer().getPosY());
-            score++;
+            if (map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("car")) {
+                score += 2;
+            } else if (map.getLanes()
+                    [map.getPlayer().getPosY()].getVehicleType().equals("truck")) {
+                score += 3;
+            } else if (map.getLanes()
+                    [map.getPlayer().getPosY()].getVehicleType().equals("motocycle")) {
+                score += 4;
+            } else {
+                score++;
+            }
+            System.out.println(score);
         }
         //Log.d("myTag", String.valueOf(score)+ " "+String.valueOf(previousLocation.size()));
     }
