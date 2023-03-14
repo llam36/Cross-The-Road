@@ -30,12 +30,12 @@ public class Vehicle {
         long currentTime = currentTimeStamp.getTime();
 
         long delta = currentTime - createTime;
-        int travelDistance = (int) delta/velocity;
+        int travelDistance = (int) delta / velocity;
 
         if (direction == 1) {
-            return gridHeight * posY + (posX+travelDistance)%laneLength;
+            return gridHeight * posY + (posX + travelDistance) % laneLength;
         } else {
-            return gridHeight * posY + (posX+8-travelDistance%laneLength)%laneLength;
+            return gridHeight * posY + (posX + 8 - travelDistance % laneLength) % laneLength;
         }
 
     }

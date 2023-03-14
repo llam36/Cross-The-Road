@@ -10,7 +10,7 @@ public class Road extends Lane {
 
     //1: bike; 2:car; 3:truck
 
-    ArrayList<Vehicle> vehicle;
+    private ArrayList<Vehicle> vehicle;
     public Road(int posY, String difficulty, int vehicleType) {
         this.vehicleType = vehicleType;
         this.difficulty = difficulty;
@@ -33,20 +33,20 @@ public class Road extends Lane {
         vehicle = new ArrayList<Vehicle>();
 
         if (vehicleType == 1) {
-            vehicle.add(new Vehicle(0, posY, R.drawable.car, 1000+vModifier, 1));
-            vehicle.add(new Vehicle(5, posY, R.drawable.car, 1000+vModifier, 1));
+            vehicle.add(new Vehicle(0, posY, R.drawable.car, 1000 + vModifier, 1));
+            vehicle.add(new Vehicle(5, posY, R.drawable.car, 1000 + vModifier, 1));
         } else if (vehicleType == 2) {
             vehicle.add(new Vehicle(0, posY, R.drawable.truck_head,
-                    1500+vModifier, -1));
-            vehicle.add(new Vehicle(1, posY, R.drawable.truck_tail, 1500+vModifier, -1));
+                    1500 + vModifier, -1));
+            vehicle.add(new Vehicle(1, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
 
-            vehicle.add(new Vehicle(4, posY, R.drawable.truck_head, 1500+vModifier, -1));
-            vehicle.add(new Vehicle(5, posY, R.drawable.truck_tail, 1500+vModifier, -1));
+            vehicle.add(new Vehicle(4, posY, R.drawable.truck_head, 1500 + vModifier, -1));
+            vehicle.add(new Vehicle(5, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
 
         } else if (vehicleType == 3) {
-            vehicle.add(new Vehicle(0, posY, R.drawable.moto, 500+vModifier, -1));
-            vehicle.add(new Vehicle(2, posY, R.drawable.moto, 500+vModifier, -1));
-            vehicle.add(new Vehicle(6, posY, R.drawable.moto, 500+vModifier, -1));
+            vehicle.add(new Vehicle(0, posY, R.drawable.moto, 500 + vModifier, -1));
+            vehicle.add(new Vehicle(2, posY, R.drawable.moto, 500 + vModifier, -1));
+            vehicle.add(new Vehicle(6, posY, R.drawable.moto, 500 + vModifier, -1));
         }
     }
     @Override
@@ -56,7 +56,7 @@ public class Road extends Lane {
 
     public int[] getVehiclesPos() {
         int[] list = new int[3];
-        for(int i = 0; i <= vehicle.size(); i++) {
+        for (int i = 0; i <= vehicle.size(); i++) {
             Vehicle currentVehicle = vehicle.get(i);
             list[i] = currentVehicle.getPos();
         }

@@ -28,13 +28,13 @@ public class Map {
         for (int i = safeTileId + 1; i < 9; i++) {
             if (count == 0) {
                 lanes[i] = new Road(i, difficulty, 1);
-                ++ count;
+                ++count;
             } else if (count == 1) {
                 lanes[i] = new Road(i, difficulty, 2);
-                ++ count;
+                ++count;
             } else if (count == 2) {
                 lanes[i] = new Road(i, difficulty, 3);
-                ++ count;
+                ++count;
             } else {
                 int randomType = (int) Math.floor(Math.random()
                         * (3 - 1 + 1) + 1);
@@ -54,7 +54,9 @@ public class Map {
         adapter.notifyDataSetChanged();
     }
 
-    public Player getPlayer() { return player; }
+    public Player getPlayer() {
+        return player;
+    }
 
     public String getDifficulty() {
         return difficulty;

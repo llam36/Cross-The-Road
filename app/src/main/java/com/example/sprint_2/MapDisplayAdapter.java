@@ -18,9 +18,6 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         this.gameMap = gameMap;
         this.imageOption = imageOption;
     }
-
-
-    // TODO: what the fuck is tileIV ? and TileVSrc ?????
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -74,9 +71,9 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         ArrayList<Road> roadList = gameMap.getRoad();
         vehicalIV.setVisibility(View.INVISIBLE);
 
-        for (int i=0; i < roadList.size(); i++ ) {
+        for (int i = 0; i < roadList.size(); i++) {
             ArrayList<Vehicle> vehicleList = roadList.get(i).getVehicles();
-            for (int j=0; j < vehicleList.size(); j++) {
+            for (int j = 0; j < vehicleList.size(); j++) {
                 if (vehicleList.get(j).getPos() == position) {
                     vehicalIV.setImageResource(vehicleList.get(j).getImageId());
                     vehicalIV.setVisibility(View.VISIBLE);

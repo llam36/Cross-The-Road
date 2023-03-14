@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
-import android.telecom.TelecomManager;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -51,9 +50,6 @@ public class MapScreen extends AppCompatActivity {
                 TextView score = findViewById(R.id.score);
                 score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
             }
-
-
-            //TODO: Add logic for game over later
             @Override
             public void onFinish() {
                 System.out.println("Game over");

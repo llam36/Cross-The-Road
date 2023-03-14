@@ -1,7 +1,5 @@
 package com.example.sprint_2;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -134,7 +132,6 @@ public class Player implements Serializable {
             }
             System.out.println(score);
         }
-        //Log.d("myTag", String.valueOf(score)+ " "+String.valueOf(previousLocation.size()));
     }
     public int getScore() {
         return score;
