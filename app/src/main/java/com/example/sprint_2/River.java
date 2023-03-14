@@ -11,4 +11,8 @@ public class River extends Lane {
     public String getType() {
         return "River";
     }
+
+    public String getVehicleType() {
+        return "null";
+    }
 }

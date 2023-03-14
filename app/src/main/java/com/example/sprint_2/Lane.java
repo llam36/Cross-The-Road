@@ -9,5 +9,7 @@ public abstract class Lane {
 
     public abstract String getType();
 
+    public abstract String getVehicleType();
+
 }
 

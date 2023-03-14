@@ -12,4 +12,7 @@ public class GoalTile extends Lane {
             tiles[i] = new Tile("GoalTile");
         }
     }
+    public String getVehicleType() {
+        return "null";
+    }
 }
