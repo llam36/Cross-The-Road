@@ -1,2 +1,38 @@
-package com.example.sprint_2;public class GameOverScreen {
+package com.example.sprint_2;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class GameOverScreen extends AppCompatActivity {
+    private Button exitButton;
+    private Button restartButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.gameover_screen);
+        exitButton = (Button) findViewById(R.id.exit);
+        restartButton = (Button) findViewById(R.id.restart);
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent send = new Intent(GameOverScreen.this, ConfigScreen.class);
+                startActivity(send);
+
+            }
+        });
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+    }
 }
