@@ -33,4 +33,19 @@
         app:layout_constraintStart_toEndOf="@+id/restart"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/totalScoreLabel"
+        android:layout_width="143dp"
+        android:layout_height="49dp"
+        android:text="SCORE: 0"
+        android:textColor="#FAF5EE"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.347" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
