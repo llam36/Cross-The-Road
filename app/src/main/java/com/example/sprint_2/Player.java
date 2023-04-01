@@ -51,6 +51,12 @@ public class Player implements Serializable {
             posY += 1;
         }
     }
+    public void resetLocationScore() {
+        lives--;
+        posX = 4;
+        posY = 9;
+        score = 0;
+    }
 
     public int getLives() {
         return lives;
