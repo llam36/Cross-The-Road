@@ -34,4 +34,5 @@ public class DorsaJunitTest {
         player.updateScore(map,"down");
         assertEquals(x,player.getScore());
     }
+
 }
