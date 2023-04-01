@@ -25,6 +25,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".GameOverScreen"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".GameScreen"
             android:exported="false">
         </activity>
