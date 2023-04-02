@@ -35,7 +35,19 @@
         android:id="@+id/lives"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="10dp"
+        android:text="Lives:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/totalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
         android:layout_marginTop="10dp"
         android:text="Lives:"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
