@@ -49,6 +49,7 @@ public class MapScreen extends AppCompatActivity {
                 timeLeftInMSec = l;
                 adapter.notifyDataSetChanged();
                 if (player.getLives() == 0) { //check player current lives
+                    cancel();
                     endGame();
                 }
                 TextView score = findViewById(R.id.score);
@@ -76,8 +77,8 @@ public class MapScreen extends AppCompatActivity {
 
     //when game over, go to GameOverScreen with player score.
     public void endGame() {
-//        Intent intent = new Intent(this, GameOverScreen.class);
-//        intent.putExtra("score", player.getScore());
-//        startActivity(intent);
+        Intent intent = new Intent(this, GameOverScreen.class);
+        intent.putExtra("score", player.getTotalScore());
+        startActivity(intent);
     }
 }
