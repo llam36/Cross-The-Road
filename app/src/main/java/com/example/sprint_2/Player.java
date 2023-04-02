@@ -50,6 +50,7 @@ public class Player implements Serializable {
         } else if (s.equals("down") && posY < 9) {
             posY += 1;
         }
+
     }
 
     public int getLives() {
@@ -126,6 +127,7 @@ public class Player implements Serializable {
             } else if (map.getLanes()
                     [map.getPlayer().getPosY()].getVehicleType().equals("motorcycle")) {
                 score += 4;
+
             } else {
                 score++;
             }

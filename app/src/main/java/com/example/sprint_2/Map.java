@@ -47,6 +47,7 @@ public class Map {
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
         adapter.notifyDataSetChanged();
+
     }
 
     public void updateVehicleLocation(MapDisplayAdapter adapter) {
