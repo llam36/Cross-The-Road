@@ -2,6 +2,7 @@ package com.example.sprint_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
@@ -47,8 +48,13 @@ public class MapScreen extends AppCompatActivity {
             public void onTick(long l) {
                 timeLeftInMSec = l;
                 adapter.notifyDataSetChanged();
+                if (player.getLives() == 0) { //check player current lives
+                    endGame();
+                }
                 TextView score = findViewById(R.id.score);
                 score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
+//                TextView lives = findViewById(R.id.lives);
+//                lives.setText(String.format("Lives: %d", gameMap.getPlayer().getLives()));
             }
             @Override
             public void onFinish() {
@@ -66,5 +72,12 @@ public class MapScreen extends AppCompatActivity {
             }
         }
         return tiles;
+    }
+
+    //when game over, go to GameOverScreen with player score.
+    public void endGame() {
+//        Intent intent = new Intent(this, GameOverScreen.class);
+//        intent.putExtra("score", player.getScore());
+//        startActivity(intent);
     }
 }
