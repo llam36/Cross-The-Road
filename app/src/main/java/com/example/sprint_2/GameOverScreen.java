@@ -14,7 +14,6 @@ public class GameOverScreen extends AppCompatActivity {
     private Button restartButton;
 
     private TextView totalScoreLabel;
-    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +22,8 @@ public class GameOverScreen extends AppCompatActivity {
         exitButton = (Button) findViewById(R.id.exit);
         restartButton = (Button) findViewById(R.id.restart);
         totalScoreLabel = (TextView) findViewById(R.id.totalScoreLabel);
-        String score = String.valueOf(player.getScore());
-        totalScoreLabel.setText(score);
+        int totalScore = getIntent().getIntExtra("score", 0);
+        totalScoreLabel.setText(String.format("Score: " + totalScore));
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +34,7 @@ public class GameOverScreen extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishAffinity();
                 System.exit(0);
             }
         });

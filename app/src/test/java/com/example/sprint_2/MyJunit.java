@@ -28,7 +28,7 @@ public class MyJunit {
     }
     @Test
     public void checkScorePassTruck() {
-        //move player to car lane to test score update
+        //move player to truck lane to test score update
         while (!map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("truck")) {
             map.getPlayer().updatePlayerLocation("up");
         }
@@ -38,13 +38,38 @@ public class MyJunit {
     }
     @Test
     public void checkScorePassMotocycle() {
-        //move player to car lane to test score update
+        //move player to motorcycle lane to test score update
         while (!map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("motorcycle")) {
             map.getPlayer().updatePlayerLocation("up");
+            System.out.println("The player score is: " + player.getScore());
         }
         int score = player.getScore() + 4;
         map.getPlayer().updateScore(map, "up");
+        System.out.println("The player score is: " + player.getScore());
         assertEquals(score, player.getScore());
+    }
+    @Test
+    public void checkWaterCollisionScoreReset() {
+        //move player to before river lane
+        while (!map.getLanes()[map.getPlayer().getPosY()].getType().equals("River")) {
+            map.getPlayer().updatePlayerLocation("up");
+            player.updateScore(map, "up");
+        }
+        int score = player.getScore();
+        player.resetLocationScore();
+        assertNotEquals(score, player.getScore());
+        assertEquals(0, player.getScore());
+    }
+
+    @Test
+    public void checkKeepingTotalScore() {
+        map.getPlayer().updatePlayerLocation("up");
+        player.updateScore(map, "up");
+        int score = map.getPlayer().getScore();
+        map.getPlayer().resetLocationScore();
+        int totalScore = map.getPlayer().getTotalScore();
+        assertEquals(score, totalScore);
+        assertNotEquals(totalScore, map.getPlayer().getScore());
     }
 
 }
