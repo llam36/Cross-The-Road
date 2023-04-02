@@ -9,14 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 public class MapDisplayAdapter extends ArrayAdapter<Tile> {
+    private final int gridHeight = 8;
+    private final int laneLength = 8;
     private Map gameMap;
     private int imageOption;
+
+    private Context context;
+
     public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap, int imageOption) {
         super(context, 0, tiles);
         this.gameMap = gameMap;
         this.imageOption = imageOption;
+        this.context = context;
     }
     @NonNull
     @Override
@@ -55,19 +62,25 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         }
         tileIV.setImageResource(tileVSrc);
 
+       //initialize variables for setting
+        boolean hasSprite = false;
+        boolean hasVehical = false;
+        boolean onRiver = false;
+
+
         //setting visibility of spriteIV and its image display
         ImageView spriteIV = tileView.findViewById(R.id.IVSprite);
         spriteIV.setImageResource(imageOption);
         if (position == gameMap.getPlayer().getPos()) {
+            hasSprite = true;
             spriteIV.setVisibility(View.VISIBLE);
         } else {
             spriteIV.setVisibility(View.INVISIBLE);
         }
 
-        //setting visibility of vehicle and its image display
+        //Vehicle display
         ImageView vehicalIV = tileView.findViewById(R.id.vehicle);
         vehicalIV.setImageResource(R.drawable.white);
-        //System.out.println("Image Option: " + imageOption);
         ArrayList<Road> roadList = gameMap.getRoad();
         vehicalIV.setVisibility(View.INVISIBLE);
 
@@ -76,10 +89,59 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             for (int j = 0; j < vehicleList.size(); j++) {
                 if (vehicleList.get(j).getPos() == position) {
                     vehicalIV.setImageResource(vehicleList.get(j).getImageId());
+                    hasVehical = true;
                     vehicalIV.setVisibility(View.VISIBLE);
                 }
             }
         }
+
+        //Log display
+//        ImageView logIV = tileView.findViewById(R.id.vehicle);
+//        logIV.setImageResource(R.drawable.white);
+//        ArrayList<River> riverList = gameMap.getRiver();
+//        logIV.setVisibility(View.INVISIBLE);
+//
+//        for (int i = 0; i < riverList.size(); i++) {
+//            ArrayList<Log> logList = riverList.get(i).getLogs();
+//            for (int j = 0; j < logList.size(); j++) {
+//                if (logList.get(j).getPos() == position) {
+//                    hasLog = true;
+//                    logIV.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        }
+
+        ArrayList<Integer> riverList = gameMap.getRiverIndex();
+        int riverLowerBound = riverList.get(0) * gridHeight;
+        int riverHigherBound = riverList.get(riverList.size()-1) * gridHeight + 7;
+
+        if (riverLowerBound < position && position < riverHigherBound) {
+            onRiver = true;
+        }
+
+        if (hasVehical && hasSprite) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+            AlertDialog crashDialog = alertBuilder.create();
+            crashDialog.setMessage("You crashed into the car!!!");
+            crashDialog.show();
+            gameMap.getPlayer().resetLocationScore();
+        }
+
+        if (onRiver && hasSprite) {
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+            AlertDialog crashDialog = alertBuilder.create();
+            crashDialog.setMessage("You fell into river and cannot swim! Too bad!");
+            crashDialog.show();
+            gameMap.getPlayer().resetLocationScore();
+        }
+
+
+
+
+
+
+
+
         return tileView;
     }
 }
