@@ -91,8 +91,18 @@ public class Map {
     public ArrayList<River> getRiver() {
         ArrayList<River> list = new ArrayList<River>();
         for (int i = 0; i < lanes.length; i++) {
-            if (lanes[i].getType().equals("Road")) {
+            if (lanes[i].getType().equals("River")) {
                 list.add((River) lanes[i]);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> getRiverIndex() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < lanes.length; i++) {
+            if (lanes[i].getType().equals("River")) {
+                list.add(i);
             }
         }
         return list;
