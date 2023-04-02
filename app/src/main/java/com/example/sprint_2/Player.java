@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
+    private int totalScore = 0;
     private int score = 0;
     private ArrayList<Integer> previousLocation;
     private final int gridHeight = 8;
@@ -55,6 +56,9 @@ public class Player implements Serializable {
         lives--;
         posX = 4;
         posY = 9;
+        if (totalScore < score) {
+            totalScore = score;
+        }
         score = 0;
     }
 
@@ -140,5 +144,8 @@ public class Player implements Serializable {
     }
     public int getScore() {
         return score;
+    }
+    public int getTotalScore() {
+        return totalScore;
     }
 }
