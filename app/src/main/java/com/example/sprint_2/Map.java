@@ -47,11 +47,7 @@ public class Map {
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
         adapter.notifyDataSetChanged();
-<<<<<<< HEAD
-
-=======
         // check water/vehicle collision -> player.resetLocationScore -> adaper.notify
->>>>>>> d8ce8ed872ac81254a02282d5891c938cccf84a5
     }
 
     public void updateVehicleLocation(MapDisplayAdapter adapter) {
