@@ -11,7 +11,9 @@ public class PranatiJunit {
 
     @Before
     public void setUp() {
+
         player = new Player();
+        map = new Map("Easy", player);
     }
     @Test
     public void updatePosUpTest() {
