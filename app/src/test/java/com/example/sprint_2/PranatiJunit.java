@@ -11,7 +11,9 @@ public class PranatiJunit {
 
     @Before
     public void setUp() {
+
         player = new Player();
+        map = new Map("Easy", player);
     }
     @Test
     public void updatePosUpTest() {
@@ -40,4 +42,31 @@ public class PranatiJunit {
         player.updateScore(map,"right");
         assertEquals(x,player.getScore());
     }
+
+    @Test
+    public void checkThePositionAfterRiverCollision(){
+        while (!map.getLanes()[map.getPlayer().getPosY()].getType().equals("River")) {
+            map.getPlayer().updatePlayerLocation("up");
+            player.updateScore(map, "up");
+        }
+        player.resetLocationScore();
+        int x = 4;//initial x loc
+        int y = 9;//initial y loc
+        assertEquals(x,player.getPosX());
+        assertEquals(y,player.getPosY());
+
+    }
+
+    @Test
+    public void checkTheLivesAfterRiverCollision(){
+        while (!map.getLanes()[map.getPlayer().getPosY()].getType().equals("River")) {
+            map.getPlayer().updatePlayerLocation("up");
+        }
+        int lives = player.getLives();
+        player.resetLocationScore();
+        assertNotEquals(lives, player.getLives());
+        assertEquals(lives - 1, player.getLives());
+    }
+
+
 }
