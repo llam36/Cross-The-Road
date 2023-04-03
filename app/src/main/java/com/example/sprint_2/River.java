@@ -16,7 +16,6 @@ public class River extends Lane {
         return "River";
     }
 
-    //TODO: remove this, fix the parent class
     public String getVehicleType() {
         return "null";
     }

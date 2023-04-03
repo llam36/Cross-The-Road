@@ -35,7 +35,7 @@ public class DorsaJunitTest {
         assertEquals(x,player.getScore());
     }
     @Test
-    public void checkthePositionAfterCollision(){
+    public void checkThePositionAfterCollision(){
         while (!map.getLanes()[map.getPlayer().getPosY()].getType().equals("Road")) {
             map.getPlayer().updatePlayerLocation("up");
             player.updateScore(map, "up");
@@ -50,7 +50,7 @@ public class DorsaJunitTest {
 
     }
     @Test
-    public void checkTheacoreAfterVehicleCollision(){
+    public void checkTheScoreAfterVehicleCollision(){
             while (!map.getLanes()[map.getPlayer().getPosY()].getType().equals("Road")) {
                 map.getPlayer().updatePlayerLocation("up");
                 player.updateScore(map, "up");

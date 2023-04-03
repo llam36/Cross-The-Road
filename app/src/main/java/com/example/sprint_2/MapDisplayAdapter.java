@@ -62,7 +62,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         }
         tileIV.setImageResource(tileVSrc);
 
-       //initialize variables for setting
+        //initialize variables for setting
         boolean hasSprite = false;
         boolean hasVehical = false;
         boolean onRiver = false;
@@ -94,26 +94,25 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
                 }
             }
         }
-
         //Log display
-//        ImageView logIV = tileView.findViewById(R.id.vehicle);
-//        logIV.setImageResource(R.drawable.white);
-//        ArrayList<River> riverList = gameMap.getRiver();
-//        logIV.setVisibility(View.INVISIBLE);
-//
-//        for (int i = 0; i < riverList.size(); i++) {
-//            ArrayList<Log> logList = riverList.get(i).getLogs();
-//            for (int j = 0; j < logList.size(); j++) {
-//                if (logList.get(j).getPos() == position) {
-//                    hasLog = true;
-//                    logIV.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        }
+        //        ImageView logIV = tileView.findViewById(R.id.vehicle);
+        //        logIV.setImageResource(R.drawable.white);
+        //        ArrayList<River> riverList = gameMap.getRiver();
+        //        logIV.setVisibility(View.INVISIBLE);
+        //
+        //        for (int i = 0; i < riverList.size(); i++) {
+        //            ArrayList<Log> logList = riverList.get(i).getLogs();
+        //            for (int j = 0; j < logList.size(); j++) {
+        //                if (logList.get(j).getPos() == position) {
+        //                    hasLog = true;
+        //                    logIV.setVisibility(View.VISIBLE);
+        //                }
+        //            }
+        //        }
 
         ArrayList<Integer> riverList = gameMap.getRiverIndex();
         int riverLowerBound = riverList.get(0) * gridHeight;
-        int riverHigherBound = riverList.get(riverList.size()-1) * gridHeight + 7;
+        int riverHigherBound = riverList.get(riverList.size() - 1) * gridHeight + 7;
 
         if (riverLowerBound < position && position < riverHigherBound) {
             onRiver = true;
