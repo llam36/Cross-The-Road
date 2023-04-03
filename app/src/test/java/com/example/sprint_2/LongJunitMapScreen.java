@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -64,5 +66,44 @@ public class LongJunitMapScreen {
         int score = player.getScore() + 2;
         map.getPlayer().updateScore(map, "up");
         assertEquals(score, player.getScore());
+    }
+    @Test
+    public void checkLivesMoveUpCollision() {
+        map.getPlayer().updatePlayerLocation("up");
+        Road road = (Road) map.getLanes()[map.getPlayer().getPosY()];
+        boolean collided = false;
+        int lives = map.getPlayer().getLives();
+        //wait for vehicle collision
+        while (!collided) {
+            ArrayList<Vehicle> vehicleList = road.getVehicles();
+            for (int j = 0; j < vehicleList.size(); j++) {
+                if (vehicleList.get(j).getPos() == map.getPlayer().getPos()) {
+                    collided = true;
+                    map.getPlayer().resetLocationScore();
+                }
+            }
+        }
+        assertEquals(lives - 1, map.getPlayer().getLives());
+    }
+
+    @Test
+    public void checkLivesMoveDownCollision() {
+        map.getPlayer().updatePlayerLocation("up");
+        map.getPlayer().updatePlayerLocation("up");
+        map.getPlayer().updatePlayerLocation("down");
+        Road road = (Road) map.getLanes()[map.getPlayer().getPosY()];
+        boolean collided = false;
+        int lives = map.getPlayer().getLives();
+        //wait for vehicle collision
+        while (!collided) {
+            ArrayList<Vehicle> vehicleList = road.getVehicles();
+            for (int j = 0; j < vehicleList.size(); j++) {
+                if (vehicleList.get(j).getPos() == map.getPlayer().getPos()) {
+                    collided = true;
+                    map.getPlayer().resetLocationScore();
+                }
+            }
+        }
+        assertEquals(lives - 1, map.getPlayer().getLives());
     }
 }
