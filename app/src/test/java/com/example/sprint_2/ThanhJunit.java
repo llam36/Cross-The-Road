@@ -72,4 +72,56 @@ public class ThanhJunit {
         assertTrue(vehicle3.getVelocity() ==  800);
     }
 
+    @Test
+
+    public void checkCollisionStandingStill() {
+        Road road = (Road) map.getLanes()[8];
+        ArrayList<Vehicle> vehicles = road.getVehicles();
+
+        //player moves up one so that it can enter the road with cars
+        player.updatePlayerLocation("up");
+        int position = player.getPos();
+        int liveNum = player.getLives();
+        boolean crash = false;
+
+        //standing still so that it can wait for the collision
+        while (!crash) {
+            for (int j = 0; j < vehicles.size(); j++) {
+                if (vehicles.get(j).getPos() == position) {
+                    crash = true;
+                    map.getPlayer().resetLocationScore();
+                }
+            }
+        }
+
+        assertEquals(crash, true);
+        assertEquals(liveNum - 1, map.getPlayer().getLives());
+    }
+
+    @Test
+    public void checkCollisionMovingRight() {
+        Road road = (Road) map.getLanes()[8];
+        ArrayList<Vehicle> vehicles = road.getVehicles();
+
+        //player moves up one so that it can enter the road with cars
+        player.updatePlayerLocation("up");
+        int position = player.getPos();
+        int liveNum = player.getLives();
+        boolean crash = false;
+
+        //moving right until the collision
+        while (!crash) {
+            for (int j = 0; j < vehicles.size(); j++) {
+                if (vehicles.get(j).getPos() == position) {
+                    player.updatePlayerLocation("right");
+                    crash = true;
+                    map.getPlayer().resetLocationScore();
+                }
+            }
+        }
+
+        assertEquals(crash, true);
+        assertEquals(liveNum - 1, map.getPlayer().getLives());
+    }
+
 }
