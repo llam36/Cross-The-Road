@@ -20,21 +20,33 @@ public class Map {
         int safeTileId = (int) Math.floor(Math.random()
                 * (higherBound - lowerBound + 1) + lowerBound);
 
+        int riverCount = 0;
         for (int i = 1; i < safeTileId; i++) {
-            lanes[i] = new River();
+            if (riverCount == 0) {
+                lanes[i] = new River(i, difficulty, 1);
+                riverCount ++;
+            } else if (riverCount == 1) {
+                lanes[i] = new River(i, difficulty, 2);
+            } else {
+                int randomType = (int) Math.floor(Math.random()
+                        * (2 - 1 + 1) + 1);
+                lanes[i] = new River(i, difficulty, randomType);
+            }
         }
+
         lanes[safeTileId] =  new SafeTile();
-        int count = 0;
+
+        int roadCount = 0;
         for (int i = safeTileId + 1; i < 9; i++) {
-            if (count == 0) {
+            if (roadCount == 0) {
                 lanes[i] = new Road(i, difficulty, 1);
-                ++count;
-            } else if (count == 1) {
+                ++roadCount;
+            } else if (roadCount == 1) {
                 lanes[i] = new Road(i, difficulty, 2);
-                ++count;
-            } else if (count == 2) {
+                ++roadCount ;
+            } else if (roadCount == 2) {
                 lanes[i] = new Road(i, difficulty, 3);
-                ++count;
+                ++roadCount;
             } else {
                 int randomType = (int) Math.floor(Math.random()
                         * (3 - 1 + 1) + 1);
