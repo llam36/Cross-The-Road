@@ -1,6 +1,7 @@
 package com.example.sprint_2;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
@@ -8,11 +9,16 @@ public class Player implements Serializable {
     private int score = 0;
     private ArrayList<Integer> previousLocation;
     private final int gridHeight = 8;
+    private final int laneLength = 8;
     private int lives;
     private String name;
     private int imageOption;
     private int posX;
     private int posY;
+
+    private Log currentOnLog;
+
+    private boolean onLog;
 
     public Player() {
         this("Easy", "Player", 1);
@@ -21,6 +27,7 @@ public class Player implements Serializable {
 
 
     public Player(String level, String name, int imageOption) {
+        this.onLog = false;
         previousLocation = new ArrayList<Integer>();
         switch (level) {
         case "Easy":
@@ -42,6 +49,7 @@ public class Player implements Serializable {
     }
 
     public void updatePlayerLocation(String s) {
+        offLog();
         if (s.equals("left") && posX > 0) {
             posX -= 1;
         } else if (s.equals("right") && posX < 7) {
@@ -52,7 +60,33 @@ public class Player implements Serializable {
             posY += 1;
         }
 
+
     }
+
+    public void onLog(Log currentOnLog) {
+        this.currentOnLog = currentOnLog;
+        this.onLog = true;
+    }
+
+    public void offLog() {
+        this.posY = this.getPos() / gridHeight;
+        this.posX =  this.getPos() % gridHeight;
+        this.onLog = false;
+    }
+
+    public void updatePlayerSpecificLocation(int x, int y) {
+        this.posX = x;
+        this.posY = y;
+    }
+
+    public int getPos() {
+        if(!onLog) {
+            return gridHeight * posY + posX;
+        } else  {
+            return currentOnLog.getPos();
+        }
+    }
+
     public void resetLocationScore() {
         lives--;
         posX = 4;
@@ -102,11 +136,6 @@ public class Player implements Serializable {
     public void setPosY(int posY) {
         this.posY = posY;
     }
-
-    public int getPos() {
-        return gridHeight * posY + posX;
-    }
-
 
     public boolean isEmptyStringName(String name) {
         return name.equals("");

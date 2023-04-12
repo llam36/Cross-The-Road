@@ -27,6 +27,10 @@ public class Map {
                 riverCount ++;
             } else if (riverCount == 1) {
                 lanes[i] = new River(i, difficulty, 2);
+                riverCount ++;
+            } else if (riverCount == 2) {
+                lanes[i] = new River(i, difficulty, 3);
+                riverCount ++;
             } else {
                 int randomType = (int) Math.floor(Math.random()
                         * (2 - 1 + 1) + 1);
@@ -58,6 +62,11 @@ public class Map {
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void updatePlayerSpecificLocation(int x, int y, MapDisplayAdapter adapter) {
+        player.updatePlayerSpecificLocation(x, y);
         adapter.notifyDataSetChanged();
     }
 

@@ -39,13 +39,19 @@ public class Log {
         }
 
     }
-
+    public int getDirection() {
+        return direction;
+    }
     public int getVelocity() {
         return velocity;
     }
 
     public int getImageId() {
         return imageId;
+    }
+
+    public long getCreateTime() {
+        return createTime;
     }
 
 }

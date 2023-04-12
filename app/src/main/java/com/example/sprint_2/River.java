@@ -34,14 +34,18 @@ public class River extends Lane {
 
         logList = new ArrayList<Log>();
         if (type == 1) {
-            logList.add(new Log(0, posY, R.drawable.car, 1500 + vModifier, 1));
-            logList.add(new Log(1, posY, R.drawable.car, 1500 + vModifier, 1));
-            logList.add(new Log(4, posY, R.drawable.car, 1500 + vModifier, 1));
-            logList.add(new Log(5, posY, R.drawable.car, 1500 + vModifier, 1));
+            logList.add(new Log(1, posY, R.drawable.car, 900 + vModifier, -1));
+            logList.add(new Log(3, posY, R.drawable.car, 900 + vModifier, -1));
+            logList.add(new Log(6, posY, R.drawable.car, 900 + vModifier, -1));
+        } else if (type == 2){
+            logList.add(new Log(0, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Log(1, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Log(4, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Log(5, posY, R.drawable.car, 1200 + vModifier, 1));
         } else {
-            logList.add(new Log(1, posY, R.drawable.car, 1000 + vModifier, -1));
-            logList.add(new Log(3, posY, R.drawable.car, 1000 + vModifier, -1));
-            logList.add(new Log(6, posY, R.drawable.car, 1000 + vModifier, -1));
+            logList.add(new Log(1, posY, R.drawable.car, 600 + vModifier, -1));
+            logList.add(new Log(4, posY, R.drawable.car, 600 + vModifier, -1));
+            logList.add(new Log(7, posY, R.drawable.car, 600 + vModifier, -1));
         }
     }
 
