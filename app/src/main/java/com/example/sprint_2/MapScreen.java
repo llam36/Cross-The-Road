@@ -46,18 +46,21 @@ public class MapScreen extends AppCompatActivity {
         countDownTimer = new CountDownTimer(timeLeftInMSec, 200) {
             @Override
             public void onTick(long l) {
-                timeLeftInMSec = l;
-                adapter.notifyDataSetChanged();
-                if (player.getLives() == 0) { //check player current lives
-                    cancel();
-                    endGame();
+                System.out.println(gameMap.needsUpdate());
+                if (gameMap.needsUpdate()) {
+                    timeLeftInMSec = l;
+                    adapter.notifyDataSetChanged();
+                    if (player.getLives() == 0) { //check player current lives
+                        cancel();
+                        endGame();
+                    }
+                    TextView score = findViewById(R.id.score);
+                    score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
+                    TextView lives = findViewById(R.id.lives);
+                    lives.setText(String.format("Lives: %d", gameMap.getPlayer().getLives()));
+                    TextView totalScore = findViewById(R.id.totalScore);
+                    totalScore.setText(String.format("Total: %d", gameMap.getPlayer().getTotalScore()));
                 }
-                TextView score = findViewById(R.id.score);
-                score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
-                TextView lives = findViewById(R.id.lives);
-                lives.setText(String.format("Lives: %d", gameMap.getPlayer().getLives()));
-                TextView totalScore = findViewById(R.id.totalScore);
-                totalScore.setText(String.format("Total: %d", gameMap.getPlayer().getTotalScore()));
             }
             @Override
             public void onFinish() {

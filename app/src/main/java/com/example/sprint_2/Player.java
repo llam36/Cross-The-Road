@@ -59,8 +59,6 @@ public class Player implements Serializable {
         } else if (s.equals("down") && posY < 9) {
             posY += 1;
         }
-
-
     }
 
     public void onLog(Log currentOnLog) {

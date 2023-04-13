@@ -75,12 +75,14 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         ArrayList<River> riverList = gameMap.getRiver();
         logIV.setVisibility(View.INVISIBLE);
         Log currentLog = new Log(0, 0, 0, 0, 1);
+        int direction = 0;
 
         for (int i = 0; i < riverList.size(); i++) {
             ArrayList<Log> logList = riverList.get(i).getLogs();
             for (int j = 0; j < logList.size(); j++) {
                 if (logList.get(j).getPos() == position) {
                     currentLog = logList.get(j);
+                    direction = logList.get(j).getDirection();
                     onLog = true;
                     logIV.setVisibility(View.VISIBLE);
                 }
@@ -121,24 +123,66 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             }
         }
 
+        //get hit by car check
         if (hasVehical && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
             crashDialog.setMessage("You crashed into the car!!!");
             crashDialog.show();
+//            gameMap.stopUpdate();
+//            if (!crashDialog.isShowing()) {
+//                gameMap.continueUpdate();
+//            }
             gameMap.getPlayer().resetLocationScore();
         }
 
+        //jump into the water check
         if (!onLog && onRiver && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
             crashDialog.setMessage("You fell into river and cannot swim! Too bad!");
             crashDialog.show();
+//            gameMap.stopUpdate();
+//            if (!crashDialog.isShowing()) {
+//                gameMap.continueUpdate();
+//            }
             gameMap.getPlayer().resetLocationScore();
+
         }
 
+        //update player's current log
         if (hasSprite && onLog) {
             gameMap.getPlayer().onLog(currentLog);
+
+            if (direction == 1 && ((position % gridHeight) == 0) && gameMap.getPlayer().getPosX() != 0) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                AlertDialog crashDialog = alertBuilder.create();
+                crashDialog.setMessage("The log brings you to the other side of the world :D");
+                crashDialog.show();
+//                gameMap.stopUpdate();
+//                gameMap.getPlayer().resetLocationScore();
+//
+//                if (!crashDialog.isShowing()) {
+//                    gameMap.continueUpdate();
+//                }
+                gameMap.getPlayer().offLog();
+                gameMap.getPlayer().resetLocationScore();
+            }
+
+            if (direction == -1 && ((position % gridHeight) == 7) && gameMap.getPlayer().getPosX() != 7) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                AlertDialog crashDialog = alertBuilder.create();
+                crashDialog.setMessage("The log brings you to the other side of the world :D");
+                crashDialog.show();
+//                gameMap.stopUpdate();
+//                gameMap.getPlayer().resetLocationScore();
+//
+//                if (!crashDialog.isShowing()) {
+//                    gameMap.continueUpdate();
+//                }
+                gameMap.getPlayer().offLog();
+                gameMap.getPlayer().resetLocationScore();
+            }
         }
 
 

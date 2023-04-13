@@ -7,7 +7,10 @@ public class Map {
     private Player player;
     private String difficulty;
 
+    private boolean update;
+
     public Map(String difficulty, Player player) {
+        this.update = true;
         this.player = player;
         lanes = new Lane[10];
         this.difficulty = difficulty;
@@ -92,6 +95,18 @@ public class Map {
 
     public Lane[] getLanes() {
         return lanes;
+    }
+
+    public boolean needsUpdate() {
+        return update;
+    }
+
+    public void stopUpdate() {
+        update = false;
+    }
+
+    public void continueUpdate() {
+        update = true;
     }
 
     public void setLanes(int i, Lane data) {
