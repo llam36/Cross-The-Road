@@ -12,7 +12,7 @@ public class Log {
 
     private int direction;
 
-    //calculated the time taken to travel one block (milliseconds)
+    /// calculated the time taken to travel one block (milliseconds)
     private int velocity;
 
     public Log(int posX, int posY, int imageId, int velocity, int direction) {
@@ -39,13 +39,19 @@ public class Log {
         }
 
     }
-
+    public int getDirection() {
+        return direction;
+    }
     public int getVelocity() {
         return velocity;
     }
 
     public int getImageId() {
         return imageId;
+    }
+
+    public long getCreateTime() {
+        return createTime;
     }
 
 }

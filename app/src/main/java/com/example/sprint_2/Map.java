@@ -7,7 +7,10 @@ public class Map {
     private Player player;
     private String difficulty;
 
+    private boolean update;
+
     public Map(String difficulty, Player player) {
+        this.update = true;
         this.player = player;
         lanes = new Lane[10];
         this.difficulty = difficulty;
@@ -20,21 +23,37 @@ public class Map {
         int safeTileId = (int) Math.floor(Math.random()
                 * (higherBound - lowerBound + 1) + lowerBound);
 
+        int riverCount = 0;
         for (int i = 1; i < safeTileId; i++) {
-            lanes[i] = new River();
+            if (riverCount == 0) {
+                lanes[i] = new River(i, difficulty, 1);
+                riverCount ++;
+            } else if (riverCount == 1) {
+                lanes[i] = new River(i, difficulty, 2);
+                riverCount ++;
+            } else if (riverCount == 2) {
+                lanes[i] = new River(i, difficulty, 3);
+                riverCount ++;
+            } else {
+                int randomType = (int) Math.floor(Math.random()
+                        * (2 - 1 + 1) + 1);
+                lanes[i] = new River(i, difficulty, randomType);
+            }
         }
+
         lanes[safeTileId] =  new SafeTile();
-        int count = 0;
+
+        int roadCount = 0;
         for (int i = safeTileId + 1; i < 9; i++) {
-            if (count == 0) {
+            if (roadCount == 0) {
                 lanes[i] = new Road(i, difficulty, 1);
-                ++count;
-            } else if (count == 1) {
+                ++roadCount;
+            } else if (roadCount == 1) {
                 lanes[i] = new Road(i, difficulty, 2);
-                ++count;
-            } else if (count == 2) {
+                ++roadCount ;
+            } else if (roadCount == 2) {
                 lanes[i] = new Road(i, difficulty, 3);
-                ++count;
+                ++roadCount;
             } else {
                 int randomType = (int) Math.floor(Math.random()
                         * (3 - 1 + 1) + 1);
@@ -46,6 +65,11 @@ public class Map {
     }
     public void updatePlayerLocation(String s, MapDisplayAdapter adapter) {
         player.updatePlayerLocation(s);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void updatePlayerSpecificLocation(int x, int y, MapDisplayAdapter adapter) {
+        player.updatePlayerSpecificLocation(x, y);
         adapter.notifyDataSetChanged();
     }
 
@@ -71,6 +95,18 @@ public class Map {
 
     public Lane[] getLanes() {
         return lanes;
+    }
+
+    public boolean needsUpdate() {
+        return update;
+    }
+
+    public void stopUpdate() {
+        update = false;
+    }
+
+    public void continueUpdate() {
+        update = true;
     }
 
     public void setLanes(int i, Lane data) {

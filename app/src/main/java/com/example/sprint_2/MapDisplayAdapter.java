@@ -66,9 +66,37 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         boolean hasSprite = false;
         boolean hasVehical = false;
         boolean onRiver = false;
+        boolean onLog = false;
 
 
-        //setting visibility of spriteIV and its image display
+        //Log display
+        ImageView logIV = tileView.findViewById(R.id.log);
+        logIV.setImageResource(R.drawable.log);
+        ArrayList<River> riverList = gameMap.getRiver();
+        logIV.setVisibility(View.INVISIBLE);
+        Log currentLog = new Log(0, 0, 0, 0, 1);
+        int direction = 0;
+
+        for (int i = 0; i < riverList.size(); i++) {
+            ArrayList<Log> logList = riverList.get(i).getLogs();
+            for (int j = 0; j < logList.size(); j++) {
+                if (logList.get(j).getPos() == position) {
+                    currentLog = logList.get(j);
+                    direction = logList.get(j).getDirection();
+                    onLog = true;
+                    logIV.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+        ArrayList<Integer> riverListId = gameMap.getRiverIndex();
+        int riverLowerBound = riverListId.get(0) * gridHeight;
+        int riverHigherBound = riverListId.get(riverListId.size() - 1) * gridHeight + 7;
+        if (riverLowerBound < position && position < riverHigherBound) {
+            onRiver = true;
+        }
+
+        //Sprite display
         ImageView spriteIV = tileView.findViewById(R.id.IVSprite);
         spriteIV.setImageResource(imageOption);
         if (position == gameMap.getPlayer().getPos()) {
@@ -94,50 +122,68 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
                 }
             }
         }
-        //Log display
-        //        ImageView logIV = tileView.findViewById(R.id.vehicle);
-        //        logIV.setImageResource(R.drawable.white);
-        //        ArrayList<River> riverList = gameMap.getRiver();
-        //        logIV.setVisibility(View.INVISIBLE);
-        //
-        //        for (int i = 0; i < riverList.size(); i++) {
-        //            ArrayList<Log> logList = riverList.get(i).getLogs();
-        //            for (int j = 0; j < logList.size(); j++) {
-        //                if (logList.get(j).getPos() == position) {
-        //                    hasLog = true;
-        //                    logIV.setVisibility(View.VISIBLE);
-        //                }
-        //            }
-        //        }
 
-        ArrayList<Integer> riverList = gameMap.getRiverIndex();
-        int riverLowerBound = riverList.get(0) * gridHeight;
-        int riverHigherBound = riverList.get(riverList.size() - 1) * gridHeight + 7;
-
-        if (riverLowerBound < position && position < riverHigherBound) {
-            onRiver = true;
-        }
-
+        //get hit by car check
         if (hasVehical && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
             crashDialog.setMessage("You crashed into the car!!!");
             crashDialog.show();
+//            gameMap.stopUpdate();
+//            if (!crashDialog.isShowing()) {
+//                gameMap.continueUpdate();
+//            }
             gameMap.getPlayer().resetLocationScore();
         }
 
-        if (onRiver && hasSprite) {
+        //jump into the water check
+        if (!onLog && onRiver && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
             crashDialog.setMessage("You fell into river and cannot swim! Too bad!");
             crashDialog.show();
+//            gameMap.stopUpdate();
+//            if (!crashDialog.isShowing()) {
+//                gameMap.continueUpdate();
+//            }
             gameMap.getPlayer().resetLocationScore();
+
         }
 
+        //update player's current log
+        if (hasSprite && onLog) {
+            gameMap.getPlayer().onLog(currentLog);
 
+            if (direction == 1 && ((position % gridHeight) == 0) && gameMap.getPlayer().getPosX() != 0) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                AlertDialog crashDialog = alertBuilder.create();
+                crashDialog.setMessage("The log brings you to the other side of the world :D");
+                crashDialog.show();
+//                gameMap.stopUpdate();
+//                gameMap.getPlayer().resetLocationScore();
+//
+//                if (!crashDialog.isShowing()) {
+//                    gameMap.continueUpdate();
+//                }
+                gameMap.getPlayer().offLog();
+                gameMap.getPlayer().resetLocationScore();
+            }
 
-
-
+            if (direction == -1 && ((position % gridHeight) == 7) && gameMap.getPlayer().getPosX() != 7) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+                AlertDialog crashDialog = alertBuilder.create();
+                crashDialog.setMessage("The log brings you to the other side of the world :D");
+                crashDialog.show();
+//                gameMap.stopUpdate();
+//                gameMap.getPlayer().resetLocationScore();
+//
+//                if (!crashDialog.isShowing()) {
+//                    gameMap.continueUpdate();
+//                }
+                gameMap.getPlayer().offLog();
+                gameMap.getPlayer().resetLocationScore();
+            }
+        }
 
 
 
