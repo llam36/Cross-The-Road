@@ -24,9 +24,9 @@ public class WinScreen extends AppCompatActivity {
         restartButton = (Button) findViewById(R.id.restartTwo);
         message = (TextView) findViewById(R.id.winText);
         message.setText("    congrats you won!!");
-        //totalScoreLabel = (TextView) findViewById(R.id.totalScoreLabel);
-        //int totalScore = getIntent().getIntExtra("score", 0);
-        //totalScoreLabel.setText(String.format("Score: " + totalScore));
+        totalScoreLabel = (TextView) findViewById(R.id.totalScoreLabel);
+        int totalScore = getIntent().getIntExtra("score", 0);
+        totalScoreLabel.setText(String.format("Score: " + totalScore));
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
