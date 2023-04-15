@@ -155,21 +155,24 @@ public class Player implements Serializable {
             }
         }
         if (s.equals("up") && firstTime) {
-            previousLocation.add(map.getPlayer().getPosY());
-            if (map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("car")) {
-                score += 2;
-            } else if (map.getLanes()
-                    [map.getPlayer().getPosY()].getVehicleType().equals("truck")) {
-                score += 3;
-            } else if (map.getLanes()
-                    [map.getPlayer().getPosY()].getVehicleType().equals("motorcycle")) {
-                score += 4;
-
-            } else {
-                score++;
-            }
-            System.out.println(score);
+            updateScoreIncrease(map);
         }
+    }
+    public void updateScoreIncrease(Map map) {
+        previousLocation.add(map.getPlayer().getPosY());
+        if (map.getLanes()[map.getPlayer().getPosY()].getVehicleType().equals("car")) {
+            score += 2;
+        } else if (map.getLanes()
+                [map.getPlayer().getPosY()].getVehicleType().equals("truck")) {
+            score += 3;
+        } else if (map.getLanes()
+                [map.getPlayer().getPosY()].getVehicleType().equals("motorcycle")) {
+            score += 4;
+
+        } else {
+            score++;
+        }
+        System.out.println(score);
     }
     public void winGame() {
         score+=10;

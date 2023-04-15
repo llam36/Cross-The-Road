@@ -33,21 +33,30 @@ public class Road extends Lane {
         obstacleList = new ArrayList<Obstacle>();
 
         if (vehicleType == 1) {
-            obstacleList.add(new Obstacle(0, posY, R.drawable.car, 1000 + vModifier, 1));
-            obstacleList.add(new Obstacle(5, posY, R.drawable.car, 1000 + vModifier, 1));
+            addCar(vModifier);
         } else if (vehicleType == 2) {
-            obstacleList.add(new Obstacle(0, posY, R.drawable.truck_head,
-                    1500 + vModifier, -1));
-            obstacleList.add(new Obstacle(1, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
-
-            obstacleList.add(new Obstacle(4, posY, R.drawable.truck_head, 1500 + vModifier, -1));
-            obstacleList.add(new Obstacle(5, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
+            addTruck(vModifier);
 
         } else if (vehicleType == 3) {
-            obstacleList.add(new Obstacle(0, posY, R.drawable.moto, 500 + vModifier, -1));
-            obstacleList.add(new Obstacle(2, posY, R.drawable.moto, 500 + vModifier, -1));
-            obstacleList.add(new Obstacle(6, posY, R.drawable.moto, 500 + vModifier, -1));
+            addMoto(vModifier);
         }
+    }
+    public void addCar( int vModifier) {
+        obstacleList.add(new Obstacle(0, posY, R.drawable.car, 1000 + vModifier, 1));
+        obstacleList.add(new Obstacle(5, posY, R.drawable.car, 1000 + vModifier, 1));
+    }
+    public void addTruck( int vModifier) {
+        obstacleList.add(new Obstacle(0, posY, R.drawable.truck_head,
+                1500 + vModifier, -1));
+        obstacleList.add(new Obstacle(1, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
+
+        obstacleList.add(new Obstacle(4, posY, R.drawable.truck_head, 1500 + vModifier, -1));
+        obstacleList.add(new Obstacle(5, posY, R.drawable.truck_tail, 1500 + vModifier, -1));
+    }
+    public void addMoto(int vModifier) {
+        obstacleList.add(new Obstacle(0, posY, R.drawable.moto, 500 + vModifier, -1));
+        obstacleList.add(new Obstacle(2, posY, R.drawable.moto, 500 + vModifier, -1));
+        obstacleList.add(new Obstacle(6, posY, R.drawable.moto, 500 + vModifier, -1));
     }
     @Override
     public String getType() {
