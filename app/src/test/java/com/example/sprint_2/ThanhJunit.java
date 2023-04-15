@@ -62,21 +62,21 @@ public class ThanhJunit {
     @Test
     public void checkVelocityBasedOnCarType() {
         Road road1 = roads.get(0);
-        Vehicle vehicle = road1.getVehicles().get(0);
-        assertTrue(vehicle.getVelocity() ==  1300);
+        Obstacle obstacle = road1.getVehicles().get(0);
+        assertTrue(obstacle.getVelocity() ==  1300);
         Road road2 = roads.get(1);
-        Vehicle vehicle2 = road2.getVehicles().get(0);
-        assertTrue(vehicle2.getVelocity() ==  1800);
+        Obstacle obstacle2 = road2.getVehicles().get(0);
+        assertTrue(obstacle2.getVelocity() ==  1800);
         Road road3 = roads.get(2);
-        Vehicle vehicle3 = road3.getVehicles().get(0);
-        assertTrue(vehicle3.getVelocity() ==  800);
+        Obstacle obstacle3 = road3.getVehicles().get(0);
+        assertTrue(obstacle3.getVelocity() ==  800);
     }
 
     @Test
 
     public void checkCollisionStandingStill() {
         Road road = (Road) map.getLanes()[8];
-        ArrayList<Vehicle> vehicles = road.getVehicles();
+        ArrayList<Obstacle> obstacles = road.getVehicles();
 
         //player moves up one so that it can enter the road with cars
         player.updatePlayerLocation("up");
@@ -86,8 +86,8 @@ public class ThanhJunit {
 
         //standing still so that it can wait for the collision
         while (!crash) {
-            for (int j = 0; j < vehicles.size(); j++) {
-                if (vehicles.get(j).getPos() == position) {
+            for (int j = 0; j < obstacles.size(); j++) {
+                if (obstacles.get(j).getPos() == position) {
                     crash = true;
                     map.getPlayer().resetLocationScore();
                 }
@@ -101,7 +101,7 @@ public class ThanhJunit {
     @Test
     public void checkCollisionMovingRight() {
         Road road = (Road) map.getLanes()[8];
-        ArrayList<Vehicle> vehicles = road.getVehicles();
+        ArrayList<Obstacle> obstacles = road.getVehicles();
 
         //player moves up one so that it can enter the road with cars
         player.updatePlayerLocation("up");
@@ -111,8 +111,8 @@ public class ThanhJunit {
 
         //moving right until the collision
         while (!crash) {
-            for (int j = 0; j < vehicles.size(); j++) {
-                if (vehicles.get(j).getPos() == position) {
+            for (int j = 0; j < obstacles.size(); j++) {
+                if (obstacles.get(j).getPos() == position) {
                     player.updatePlayerLocation("right");
                     crash = true;
                     map.getPlayer().resetLocationScore();

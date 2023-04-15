@@ -1,7 +1,7 @@
 package com.example.sprint_2;
 import java.sql.Timestamp;
 
-public class Log {
+public class Obstacle {
 
     private final int gridHeight = 8;
     private final int laneLength = 8;
@@ -12,10 +12,10 @@ public class Log {
 
     private int direction;
 
-    /// calculated the time taken to travel one block (milliseconds)
+    //calculated the time taken to travel one block (milliseconds)
     private int velocity;
 
-    public Log(int posX, int posY, int imageId, int velocity, int direction) {
+    public Obstacle(int posX, int posY, int imageId, int velocity, int direction) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         this.posX = posX;
         this.posY = posY;
@@ -39,9 +39,7 @@ public class Log {
         }
 
     }
-    public int getDirection() {
-        return direction;
-    }
+
     public int getVelocity() {
         return velocity;
     }
@@ -50,8 +48,6 @@ public class Log {
         return imageId;
     }
 
-    public long getCreateTime() {
-        return createTime;
-    }
+    public int getDirection() { return direction;}
 
 }

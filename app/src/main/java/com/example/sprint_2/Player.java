@@ -1,7 +1,6 @@
 package com.example.sprint_2;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
@@ -16,7 +15,7 @@ public class Player implements Serializable {
     private int posX;
     private int posY;
 
-    private Log currentOnLog;
+    private Obstacle currentOnLog;
 
     private boolean onLog;
 
@@ -61,7 +60,7 @@ public class Player implements Serializable {
         }
     }
 
-    public void onLog(Log currentOnLog) {
+    public void onLog(Obstacle currentOnLog) {
         this.currentOnLog = currentOnLog;
         this.onLog = true;
     }
@@ -93,6 +92,7 @@ public class Player implements Serializable {
             totalScore = score;
         }
         score = 0;
+        previousLocation = new ArrayList<Integer>();
     }
 
     public int getLives() {
@@ -169,6 +169,12 @@ public class Player implements Serializable {
                 score++;
             }
             System.out.println(score);
+        }
+    }
+    public void winGame() {
+        score+=10;
+        if (totalScore < score) {
+            totalScore = score;
         }
     }
     public int getScore() {

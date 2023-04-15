@@ -74,11 +74,11 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         logIV.setImageResource(R.drawable.log);
         ArrayList<River> riverList = gameMap.getRiver();
         logIV.setVisibility(View.INVISIBLE);
-        Log currentLog = new Log(0, 0, 0, 0, 1);
+        Obstacle currentLog = new Obstacle(0, 0, 0, 0, 1);
         int direction = 0;
 
         for (int i = 0; i < riverList.size(); i++) {
-            ArrayList<Log> logList = riverList.get(i).getLogs();
+            ArrayList<Obstacle> logList = riverList.get(i).getLogs();
             for (int j = 0; j < logList.size(); j++) {
                 if (logList.get(j).getPos() == position) {
                     currentLog = logList.get(j);
@@ -113,17 +113,17 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         vehicalIV.setVisibility(View.INVISIBLE);
 
         for (int i = 0; i < roadList.size(); i++) {
-            ArrayList<Vehicle> vehicleList = roadList.get(i).getVehicles();
-            for (int j = 0; j < vehicleList.size(); j++) {
-                if (vehicleList.get(j).getPos() == position) {
-                    vehicalIV.setImageResource(vehicleList.get(j).getImageId());
+            ArrayList<Obstacle> obstacleList = roadList.get(i).getVehicles();
+            for (int j = 0; j < obstacleList.size(); j++) {
+                if (obstacleList.get(j).getPos() == position) {
+                    vehicalIV.setImageResource(obstacleList.get(j).getImageId());
                     hasVehical = true;
                     vehicalIV.setVisibility(View.VISIBLE);
                 }
             }
         }
 
-        //get hit by car check
+        // get hit by car check
         if (hasVehical && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
@@ -136,7 +136,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             gameMap.getPlayer().resetLocationScore();
         }
 
-        //jump into the water check
+        // jump into the water check
         if (!onLog && onRiver && hasSprite) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
             AlertDialog crashDialog = alertBuilder.create();
@@ -150,7 +150,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
 
         }
 
-        //update player's current log
+        // update player's current log
         if (hasSprite && onLog) {
             gameMap.getPlayer().onLog(currentLog);
 
