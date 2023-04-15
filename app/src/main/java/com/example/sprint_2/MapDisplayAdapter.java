@@ -18,12 +18,14 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     private int imageOption;
 
     private Context context;
+    private Dialog dialog;
 
     public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap, int imageOption) {
         super(context, 0, tiles);
         this.gameMap = gameMap;
         this.imageOption = imageOption;
         this.context = context;
+        dialog = new Dialog(context);
     }
     @NonNull
     @Override
@@ -125,10 +127,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
 
         // get hit by car check
         if (hasVehical && hasSprite) {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-            AlertDialog crashDialog = alertBuilder.create();
-            crashDialog.setMessage("You crashed into the car!!!");
-            crashDialog.show();
+            dialog.createDialog("You crashed into the car!!!");
 //            gameMap.stopUpdate();
 //            if (!crashDialog.isShowing()) {
 //                gameMap.continueUpdate();
@@ -138,10 +137,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
 
         // jump into the water check
         if (!onLog && onRiver && hasSprite) {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-            AlertDialog crashDialog = alertBuilder.create();
-            crashDialog.setMessage("You fell into river and cannot swim! Too bad!");
-            crashDialog.show();
+            dialog.createDialog("You fell into river and cannot swim! Too bad!");
 //            gameMap.stopUpdate();
 //            if (!crashDialog.isShowing()) {
 //                gameMap.continueUpdate();
@@ -155,10 +151,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             gameMap.getPlayer().onLog(currentLog);
 
             if (direction == 1 && ((position % gridHeight) == 0) && gameMap.getPlayer().getPosX() != 0) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                AlertDialog crashDialog = alertBuilder.create();
-                crashDialog.setMessage("The log brings you to the other side of the world :D");
-                crashDialog.show();
+                dialog.createDialog("The log brings you to the other side of the world :D");
 //                gameMap.stopUpdate();
 //                gameMap.getPlayer().resetLocationScore();
 //
@@ -170,10 +163,7 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
             }
 
             if (direction == -1 && ((position % gridHeight) == 7) && gameMap.getPlayer().getPosX() != 7) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                AlertDialog crashDialog = alertBuilder.create();
-                crashDialog.setMessage("The log brings you to the other side of the world :D");
-                crashDialog.show();
+                dialog.createDialog("The log brings you to the other side of the world :D");
 //                gameMap.stopUpdate();
 //                gameMap.getPlayer().resetLocationScore();
 //
@@ -184,9 +174,6 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
                 gameMap.getPlayer().resetLocationScore();
             }
         }
-
-
-
         return tileView;
     }
 }
