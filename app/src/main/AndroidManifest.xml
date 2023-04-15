@@ -29,6 +29,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".WinScreen"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".GameScreen"
             android:exported="false">
         </activity>
