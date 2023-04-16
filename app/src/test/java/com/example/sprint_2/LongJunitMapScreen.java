@@ -75,9 +75,9 @@ public class LongJunitMapScreen {
         int lives = map.getPlayer().getLives();
         //wait for vehicle collision
         while (!collided) {
-            ArrayList<Vehicle> vehicleList = road.getVehicles();
-            for (int j = 0; j < vehicleList.size(); j++) {
-                if (vehicleList.get(j).getPos() == map.getPlayer().getPos()) {
+            ArrayList<Obstacle> obstacleList = road.getVehicles();
+            for (int j = 0; j < obstacleList.size(); j++) {
+                if (obstacleList.get(j).getPos() == map.getPlayer().getPos()) {
                     collided = true;
                     map.getPlayer().resetLocationScore();
                 }
@@ -96,9 +96,9 @@ public class LongJunitMapScreen {
         int lives = map.getPlayer().getLives();
         //wait for vehicle collision
         while (!collided) {
-            ArrayList<Vehicle> vehicleList = road.getVehicles();
-            for (int j = 0; j < vehicleList.size(); j++) {
-                if (vehicleList.get(j).getPos() == map.getPlayer().getPos()) {
+            ArrayList<Obstacle> obstacleList = road.getVehicles();
+            for (int j = 0; j < obstacleList.size(); j++) {
+                if (obstacleList.get(j).getPos() == map.getPlayer().getPos()) {
                     collided = true;
                     map.getPlayer().resetLocationScore();
                 }

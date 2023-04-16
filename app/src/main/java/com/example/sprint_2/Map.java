@@ -89,10 +89,6 @@ public class Map {
         this.difficulty = difficulty;
     }
 
-    public String getInfo(int x, int y) {
-        return lanes[y].getTile(x).getInfo();
-    }
-
     public Lane[] getLanes() {
         return lanes;
     }
