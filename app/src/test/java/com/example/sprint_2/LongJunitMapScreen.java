@@ -16,6 +16,8 @@ public class LongJunitMapScreen {
     private Player player;
     private Map map;
 
+    private Obstacle obstacle;
+
     @Before
     public void setUp() {
         player = new Player("Hard","MyName",0);
@@ -105,5 +107,28 @@ public class LongJunitMapScreen {
             }
         }
         assertEquals(lives - 1, map.getPlayer().getLives());
+    }
+    @Test
+    public void checkOnLogOffLeftScreenLooseLive() {
+        obstacle = new Obstacle(0,0, 1, 1, 1);
+        int live = map.getPlayer().getLives();
+        map.getPlayer().onLog(obstacle);
+        // move player on log off left screen
+        while ((obstacle.getPos() % 8) != 0 || map.getPlayer().getPosX() == 0);
+        map.getPlayer().offLog();
+        map.getPlayer().resetLocationScore();
+        assertEquals(live - 1, map.getPlayer().getLives());
+    }
+
+    @Test
+    public void checkOnLogOffRightScreenLooseLive() {
+        obstacle = new Obstacle(7,0, 1, 1, -1);
+        int live = map.getPlayer().getLives();
+        map.getPlayer().onLog(obstacle);
+        // move player on log off right screen
+        while ((obstacle.getPos() % 8) != 7 || map.getPlayer().getPosX() == 7);
+        map.getPlayer().offLog();
+        map.getPlayer().resetLocationScore();
+        assertEquals(live - 1, map.getPlayer().getLives());
     }
 }
