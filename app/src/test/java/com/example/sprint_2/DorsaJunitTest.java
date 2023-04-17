@@ -6,10 +6,13 @@ import static org.junit.Assert.*;
 public class DorsaJunitTest {
     private Player player;
     private Map map;
+    private Obstacle obstacle;
     @Before
     public void setUp() {
         player = new Player("Hard","MyName",0);
         map = new Map("Hard", player);
+        obstacle = new Obstacle(15,20,4,23,1);
+
     }
     @Test
     public void checkThenull() {
@@ -60,6 +63,24 @@ public class DorsaJunitTest {
             assertNotEquals(score, player.getScore());
             assertEquals(0, player.getScore());
         }
+    @Test
+    public void OnLogLifeNotChanging() {
+        player.setLives(5);
+        player.onLog(obstacle); //put the player on log
+        assertEquals(5,player.getLives());
+    }
+    @Test
+    public void OnLogNotReturnToStart() {
+        map.getPlayer().updatePlayerLocation("up");//moving thr player away from the starting point
+        map.getPlayer().updatePlayerLocation("right");
+        player.onLog(obstacle); //putting player on log
+        int x = 4;//initial x loc
+        int y = 9;//initial y loc
+        assertNotEquals(x,player.getPosX());
+        assertNotEquals(y,player.getPosY());
+
+
+    }
 
     }
 
