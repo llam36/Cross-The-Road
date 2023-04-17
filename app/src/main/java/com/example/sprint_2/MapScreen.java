@@ -54,12 +54,19 @@ public class MapScreen extends AppCompatActivity {
                         cancel();
                         endGame();
                     }
+                    if (player.getPosY() == 0) {
+                        cancel();
+                        player.winGame();
+                        System.out.println("Total score is: " + player.getTotalScore());
+                        winGame();
+                    }
                     TextView score = findViewById(R.id.score);
                     score.setText(String.format("Score: %d", gameMap.getPlayer().getScore()));
                     TextView lives = findViewById(R.id.lives);
                     lives.setText(String.format("Lives: %d", gameMap.getPlayer().getLives()));
                     TextView totalScore = findViewById(R.id.totalScore);
-                    totalScore.setText(String.format("Total: %d", gameMap.getPlayer().getTotalScore()));
+                    totalScore.setText(String.format("Total: %d",
+                            gameMap.getPlayer().getTotalScore()));
                 }
             }
             @Override
@@ -83,6 +90,11 @@ public class MapScreen extends AppCompatActivity {
     //when game over, go to GameOverScreen with player score.
     public void endGame() {
         Intent intent = new Intent(this, GameOverScreen.class);
+        intent.putExtra("score", player.getTotalScore());
+        startActivity(intent);
+    }
+    public void winGame() {
+        Intent intent = new Intent(this, WinScreen.class);
         intent.putExtra("score", player.getTotalScore());
         startActivity(intent);
     }

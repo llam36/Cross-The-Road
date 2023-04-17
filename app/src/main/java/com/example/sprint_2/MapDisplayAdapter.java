@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     private final int gridHeight = 8;
@@ -18,12 +17,14 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     private int imageOption;
 
     private Context context;
+    private Dialog dialog;
 
     public MapDisplayAdapter(@NonNull Context context, Tile[] tiles, Map gameMap, int imageOption) {
         super(context, 0, tiles);
         this.gameMap = gameMap;
         this.imageOption = imageOption;
         this.context = context;
+        dialog = new Dialog(context);
     }
     @NonNull
     @Override
@@ -74,11 +75,11 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         logIV.setImageResource(R.drawable.log);
         ArrayList<River> riverList = gameMap.getRiver();
         logIV.setVisibility(View.INVISIBLE);
-        Log currentLog = new Log(0, 0, 0, 0, 1);
+        Obstacle currentLog = new Obstacle(0, 0, 0, 0, 1);
         int direction = 0;
 
         for (int i = 0; i < riverList.size(); i++) {
-            ArrayList<Log> logList = riverList.get(i).getLogs();
+            ArrayList<Obstacle> logList = riverList.get(i).getLogs();
             for (int j = 0; j < logList.size(); j++) {
                 if (logList.get(j).getPos() == position) {
                     currentLog = logList.get(j);
@@ -113,80 +114,47 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         vehicalIV.setVisibility(View.INVISIBLE);
 
         for (int i = 0; i < roadList.size(); i++) {
-            ArrayList<Vehicle> vehicleList = roadList.get(i).getVehicles();
-            for (int j = 0; j < vehicleList.size(); j++) {
-                if (vehicleList.get(j).getPos() == position) {
-                    vehicalIV.setImageResource(vehicleList.get(j).getImageId());
+            ArrayList<Obstacle> obstacleList = roadList.get(i).getVehicles();
+            for (int j = 0; j < obstacleList.size(); j++) {
+                if (obstacleList.get(j).getPos() == position) {
+                    vehicalIV.setImageResource(obstacleList.get(j).getImageId());
                     hasVehical = true;
                     vehicalIV.setVisibility(View.VISIBLE);
                 }
             }
         }
 
-        //get hit by car check
+        // get hit by car check
         if (hasVehical && hasSprite) {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-            AlertDialog crashDialog = alertBuilder.create();
-            crashDialog.setMessage("You crashed into the car!!!");
-            crashDialog.show();
-//            gameMap.stopUpdate();
-//            if (!crashDialog.isShowing()) {
-//                gameMap.continueUpdate();
-//            }
+            dialog.createDialog("You crashed into the car!!!");
             gameMap.getPlayer().resetLocationScore();
         }
 
-        //jump into the water check
+        // jump into the water check
         if (!onLog && onRiver && hasSprite) {
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-            AlertDialog crashDialog = alertBuilder.create();
-            crashDialog.setMessage("You fell into river and cannot swim! Too bad!");
-            crashDialog.show();
-//            gameMap.stopUpdate();
-//            if (!crashDialog.isShowing()) {
-//                gameMap.continueUpdate();
-//            }
+            dialog.createDialog("You fell into river and cannot swim! Too bad!");
             gameMap.getPlayer().resetLocationScore();
 
         }
 
-        //update player's current log
+        // update player's current log
         if (hasSprite && onLog) {
             gameMap.getPlayer().onLog(currentLog);
 
-            if (direction == 1 && ((position % gridHeight) == 0) && gameMap.getPlayer().getPosX() != 0) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                AlertDialog crashDialog = alertBuilder.create();
-                crashDialog.setMessage("The log brings you to the other side of the world :D");
-                crashDialog.show();
-//                gameMap.stopUpdate();
-//                gameMap.getPlayer().resetLocationScore();
-//
-//                if (!crashDialog.isShowing()) {
-//                    gameMap.continueUpdate();
-//                }
+            if (direction == 1 && ((position % gridHeight) == 0)
+                    && gameMap.getPlayer().getPosX() != 0) {
+                dialog.createDialog("The log brings you to the other side of the world :D");
                 gameMap.getPlayer().offLog();
                 gameMap.getPlayer().resetLocationScore();
             }
 
-            if (direction == -1 && ((position % gridHeight) == 7) && gameMap.getPlayer().getPosX() != 7) {
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                AlertDialog crashDialog = alertBuilder.create();
-                crashDialog.setMessage("The log brings you to the other side of the world :D");
-                crashDialog.show();
-//                gameMap.stopUpdate();
-//                gameMap.getPlayer().resetLocationScore();
-//
-//                if (!crashDialog.isShowing()) {
-//                    gameMap.continueUpdate();
-//                }
+            if (direction == -1 && ((position % gridHeight) == 7)
+                    && gameMap.getPlayer().getPosX() != 7) {
+                dialog.createDialog("The log brings you to the other side of the world :D");
                 gameMap.getPlayer().offLog();
                 gameMap.getPlayer().resetLocationScore();
             }
         }
-
-
-
         return tileView;
     }
 }

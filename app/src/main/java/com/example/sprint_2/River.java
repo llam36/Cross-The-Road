@@ -12,7 +12,7 @@ public class River extends Lane {
     // types of log 1: longer but slower log, 2: short but faster log
 
 
-    private ArrayList<Log> logList;
+    private ArrayList<Obstacle> logList;
     public River(int posY, String difficulty, int type) {
         this.posY = posY;
         this.difficulty = difficulty;
@@ -32,20 +32,20 @@ public class River extends Lane {
             vModifier = -300;
         }
 
-        logList = new ArrayList<Log>();
+        logList = new ArrayList<Obstacle>();
         if (type == 1) {
-            logList.add(new Log(1, posY, R.drawable.car, 900 + vModifier, -1));
-            logList.add(new Log(3, posY, R.drawable.car, 900 + vModifier, -1));
-            logList.add(new Log(6, posY, R.drawable.car, 900 + vModifier, -1));
-        } else if (type == 2){
-            logList.add(new Log(0, posY, R.drawable.car, 1200 + vModifier, 1));
-            logList.add(new Log(1, posY, R.drawable.car, 1200 + vModifier, 1));
-            logList.add(new Log(4, posY, R.drawable.car, 1200 + vModifier, 1));
-            logList.add(new Log(5, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Obstacle(1, posY, R.drawable.car, 900 + vModifier, -1));
+            logList.add(new Obstacle(3, posY, R.drawable.car, 900 + vModifier, -1));
+            logList.add(new Obstacle(6, posY, R.drawable.car, 900 + vModifier, -1));
+        } else if (type == 2) {
+            logList.add(new Obstacle(0, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Obstacle(1, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Obstacle(4, posY, R.drawable.car, 1200 + vModifier, 1));
+            logList.add(new Obstacle(5, posY, R.drawable.car, 1200 + vModifier, 1));
         } else {
-            logList.add(new Log(1, posY, R.drawable.car, 600 + vModifier, -1));
-            logList.add(new Log(4, posY, R.drawable.car, 600 + vModifier, -1));
-            logList.add(new Log(7, posY, R.drawable.car, 600 + vModifier, -1));
+            logList.add(new Obstacle(1, posY, R.drawable.car, 600 + vModifier, -1));
+            logList.add(new Obstacle(4, posY, R.drawable.car, 600 + vModifier, -1));
+            logList.add(new Obstacle(7, posY, R.drawable.car, 600 + vModifier, -1));
         }
     }
 
@@ -58,7 +58,7 @@ public class River extends Lane {
         return "null";
     }
 
-    public ArrayList<Log> getLogs() {
+    public ArrayList<Obstacle> getLogs() {
         return logList;
     }
 }

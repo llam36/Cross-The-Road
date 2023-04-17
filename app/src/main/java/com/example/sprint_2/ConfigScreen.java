@@ -36,6 +36,7 @@ public class ConfigScreen extends AppCompatActivity {
     private Player player = new Player();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,18 +92,7 @@ public class ConfigScreen extends AppCompatActivity {
                 System.out.println(R.drawable.rabbit);
             }
         });
-
-
-        //alert for name alert
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setNeutralButton("Okay", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                return;
-            }
-        });
-        alertBuilder.setTitle("ERROR");
-        alertBuilder.setCancelable(true);
-
+        Dialog dialog = new Dialog(this);
         buttonContinue = (Button) findViewById(R.id.buttonContinue);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,23 +101,15 @@ public class ConfigScreen extends AppCompatActivity {
                 name = nameText.getText().toString();
                 if (player.isNullName(name) || player.isEmptyStringName(name)
                         || player.isWhiteSpaceOnlyName(name)) {
-                    AlertDialog nameDialog = alertBuilder.create();
-                    nameDialog.setMessage("Please answer your name!");
-                    nameDialog.show();
+                    dialog.createDialog("Please answer your name!");
                 } else if (level.equals("")) {
-                    AlertDialog levelDialog = alertBuilder.create();
-                    levelDialog.setMessage("Please choose your level!");
-                    levelDialog.show();
+                    dialog.createDialog("Please choose your level!");
                 } else if (imageOption == 0) {
-                    AlertDialog imageDialog = alertBuilder.create();
-                    imageDialog.setMessage("Please choose your image!");
-                    imageDialog.show();
+                    dialog.createDialog("Please choose your image!");
                 } else {
-                    AlertDialog confirmDialog = alertBuilder.create();
-                    confirmDialog.setMessage("You have created a character " + name + " with level "
-                            + level + " and image " + imageOption);
-                    confirmDialog.setTitle("Confirmation");
-                    confirmDialog.show();
+                    String message = "You have created a character " + name + " with level "
+                            + level + " and image " + imageOption;
+                    AlertDialog confirmDialog = dialog.createDialog(message, "Confirmation");
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
