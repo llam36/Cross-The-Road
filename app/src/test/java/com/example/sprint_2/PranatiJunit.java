@@ -8,12 +8,13 @@ public class PranatiJunit {
 
     private Player player;
     private Map map;
-
+    private Obstacle obstacle;
     @Before
     public void setUp() {
 
         player = new Player();
         map = new Map("Easy", player);
+        obstacle = new Obstacle(15,20,4,23,1);
     }
     @Test
     public void updatePosUpTest() {
@@ -67,6 +68,25 @@ public class PranatiJunit {
         assertNotEquals(lives, player.getLives());
         assertEquals(lives - 1, player.getLives());
     }
+    @Test
+    public void playerOnLogUp() {
+        map.getPlayer().updatePlayerLocation("up");
+        map.getPlayer().updatePlayerLocation("right");
+        player.onLog(obstacle); //putting player on log
+        int x = player.getPos();
+        int y = obstacle.getPos();
+        assertEquals(x,y);
 
+    }
+    @Test
+    public void playerOnLogDown() {
+        map.getPlayer().updatePlayerLocation("down");
+        map.getPlayer().updatePlayerLocation("right");
+        player.onLog(obstacle); //putting player on log
+        int x = player.getPos();
+        int y = obstacle.getPos();
+        assertEquals(x,y);
+
+    }
 
 }
