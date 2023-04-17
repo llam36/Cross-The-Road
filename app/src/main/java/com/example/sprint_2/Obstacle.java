@@ -48,6 +48,8 @@ public class Obstacle {
         return imageId;
     }
 
-    public int getDirection() { return direction;}
+    public int getDirection() {
+        return direction;
+    }
 
 }

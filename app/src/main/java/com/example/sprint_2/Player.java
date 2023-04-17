@@ -77,7 +77,7 @@ public class Player implements Serializable {
     }
 
     public int getPos() {
-        if(!onLog) {
+        if (!onLog) {
             return gridHeight * posY + posX;
         } else  {
             return currentOnLog.getPos();
@@ -175,7 +175,7 @@ public class Player implements Serializable {
         System.out.println(score);
     }
     public void winGame() {
-        score+=10;
+        score += 10;
         if (totalScore < score) {
             totalScore = score;
         }

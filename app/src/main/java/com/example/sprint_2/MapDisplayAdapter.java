@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 public class MapDisplayAdapter extends ArrayAdapter<Tile> {
     private final int gridHeight = 8;
@@ -128,20 +127,12 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         // get hit by car check
         if (hasVehical && hasSprite) {
             dialog.createDialog("You crashed into the car!!!");
-//            gameMap.stopUpdate();
-//            if (!crashDialog.isShowing()) {
-//                gameMap.continueUpdate();
-//            }
             gameMap.getPlayer().resetLocationScore();
         }
 
         // jump into the water check
         if (!onLog && onRiver && hasSprite) {
             dialog.createDialog("You fell into river and cannot swim! Too bad!");
-//            gameMap.stopUpdate();
-//            if (!crashDialog.isShowing()) {
-//                gameMap.continueUpdate();
-//            }
             gameMap.getPlayer().resetLocationScore();
 
         }
@@ -150,26 +141,16 @@ public class MapDisplayAdapter extends ArrayAdapter<Tile> {
         if (hasSprite && onLog) {
             gameMap.getPlayer().onLog(currentLog);
 
-            if (direction == 1 && ((position % gridHeight) == 0) && gameMap.getPlayer().getPosX() != 0) {
+            if (direction == 1 && ((position % gridHeight) == 0)
+                    && gameMap.getPlayer().getPosX() != 0) {
                 dialog.createDialog("The log brings you to the other side of the world :D");
-//                gameMap.stopUpdate();
-//                gameMap.getPlayer().resetLocationScore();
-//
-//                if (!crashDialog.isShowing()) {
-//                    gameMap.continueUpdate();
-//                }
                 gameMap.getPlayer().offLog();
                 gameMap.getPlayer().resetLocationScore();
             }
 
-            if (direction == -1 && ((position % gridHeight) == 7) && gameMap.getPlayer().getPosX() != 7) {
+            if (direction == -1 && ((position % gridHeight) == 7)
+                    && gameMap.getPlayer().getPosX() != 7) {
                 dialog.createDialog("The log brings you to the other side of the world :D");
-//                gameMap.stopUpdate();
-//                gameMap.getPlayer().resetLocationScore();
-//
-//                if (!crashDialog.isShowing()) {
-//                    gameMap.continueUpdate();
-//                }
                 gameMap.getPlayer().offLog();
                 gameMap.getPlayer().resetLocationScore();
             }

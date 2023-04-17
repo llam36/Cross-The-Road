@@ -37,7 +37,7 @@ public class River extends Lane {
             logList.add(new Obstacle(1, posY, R.drawable.car, 900 + vModifier, -1));
             logList.add(new Obstacle(3, posY, R.drawable.car, 900 + vModifier, -1));
             logList.add(new Obstacle(6, posY, R.drawable.car, 900 + vModifier, -1));
-        } else if (type == 2){
+        } else if (type == 2) {
             logList.add(new Obstacle(0, posY, R.drawable.car, 1200 + vModifier, 1));
             logList.add(new Obstacle(1, posY, R.drawable.car, 1200 + vModifier, 1));
             logList.add(new Obstacle(4, posY, R.drawable.car, 1200 + vModifier, 1));

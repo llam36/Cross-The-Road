@@ -107,7 +107,8 @@ public class ConfigScreen extends AppCompatActivity {
                 } else if (imageOption == 0) {
                     dialog.createDialog("Please choose your image!");
                 } else {
-                    String message = "You have created a character " + name + " with level " + level + " and image " + imageOption;
+                    String message = "You have created a character " + name + " with level "
+                            + level + " and image " + imageOption;
                     AlertDialog confirmDialog = dialog.createDialog(message, "Confirmation");
                     confirmDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Okay",
                             new DialogInterface.OnClickListener() {

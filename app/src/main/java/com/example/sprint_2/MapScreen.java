@@ -65,7 +65,8 @@ public class MapScreen extends AppCompatActivity {
                     TextView lives = findViewById(R.id.lives);
                     lives.setText(String.format("Lives: %d", gameMap.getPlayer().getLives()));
                     TextView totalScore = findViewById(R.id.totalScore);
-                    totalScore.setText(String.format("Total: %d", gameMap.getPlayer().getTotalScore()));
+                    totalScore.setText(String.format("Total: %d",
+                            gameMap.getPlayer().getTotalScore()));
                 }
             }
             @Override

@@ -41,11 +41,11 @@ public class Road extends Lane {
             addMoto(vModifier);
         }
     }
-    public void addCar( int vModifier) {
+    public void addCar(int vModifier) {
         obstacleList.add(new Obstacle(0, posY, R.drawable.car, 1000 + vModifier, 1));
         obstacleList.add(new Obstacle(5, posY, R.drawable.car, 1000 + vModifier, 1));
     }
-    public void addTruck( int vModifier) {
+    public void addTruck(int vModifier) {
         obstacleList.add(new Obstacle(0, posY, R.drawable.truck_head,
                 1500 + vModifier, -1));
         obstacleList.add(new Obstacle(1, posY, R.drawable.truck_tail, 1500 + vModifier, -1));

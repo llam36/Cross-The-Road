@@ -27,13 +27,13 @@ public class Map {
         for (int i = 1; i < safeTileId; i++) {
             if (riverCount == 0) {
                 lanes[i] = new River(i, difficulty, 1);
-                riverCount ++;
+                riverCount++;
             } else if (riverCount == 1) {
                 lanes[i] = new River(i, difficulty, 2);
-                riverCount ++;
+                riverCount++;
             } else if (riverCount == 2) {
                 lanes[i] = new River(i, difficulty, 3);
-                riverCount ++;
+                riverCount++;
             } else {
                 int randomType = (int) Math.floor(Math.random()
                         * (2 - 1 + 1) + 1);
@@ -50,7 +50,7 @@ public class Map {
                 ++roadCount;
             } else if (roadCount == 1) {
                 lanes[i] = new Road(i, difficulty, 2);
-                ++roadCount ;
+                ++roadCount;
             } else if (roadCount == 2) {
                 lanes[i] = new Road(i, difficulty, 3);
                 ++roadCount;
