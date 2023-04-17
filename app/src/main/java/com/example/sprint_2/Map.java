@@ -113,7 +113,7 @@ public class Map {
         ArrayList<Road> list = new ArrayList<Road>();
         for (int i = 1; i < lanes.length; i++) {
             if (lanes[i].getType().equals("SafeTile")) {
-               return i;
+                return i;
             }
         }
         return 0;
