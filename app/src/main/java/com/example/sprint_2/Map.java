@@ -109,6 +109,16 @@ public class Map {
         lanes[i] = data;
     }
 
+    public int getSafeTile() {
+        ArrayList<Road> list = new ArrayList<Road>();
+        for (int i = 1; i < lanes.length; i++) {
+            if (lanes[i].getType().equals("SafeTile")) {
+               return i;
+            }
+        }
+        return 0;
+    }
+
     public ArrayList<Road> getRoad() {
         ArrayList<Road> list = new ArrayList<Road>();
         for (int i = 0; i < lanes.length; i++) {

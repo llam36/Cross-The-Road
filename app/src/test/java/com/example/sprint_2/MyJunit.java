@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 public class MyJunit {
 
     private Player player;
@@ -70,6 +72,22 @@ public class MyJunit {
         int totalScore = map.getPlayer().getTotalScore();
         assertEquals(score, totalScore);
         assertNotEquals(totalScore, map.getPlayer().getScore());
+    }
+
+    @Test
+    public void checkDifferentLogDirection() {
+        ArrayList<River> riverList = map.getRiver();
+        Obstacle log1 = riverList.get(0).getLogs().get(0);
+        Obstacle log2 = riverList.get(1).getLogs().get(0);
+        assert(log1.getDirection() != log2.getDirection());
+    }
+
+    @Test
+    public void checkDifferentLogVelocity() {
+        ArrayList<River> riverList = map.getRiver();
+        Obstacle log1 = riverList.get(0).getLogs().get(0);
+        Obstacle log2 = riverList.get(1).getLogs().get(0);
+        assert(log1.getVelocity() != log2.getVelocity());
     }
 
 }

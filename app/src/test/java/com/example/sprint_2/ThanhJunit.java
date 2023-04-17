@@ -18,6 +18,8 @@ public class ThanhJunit {
     private Map map;
     private ArrayList<Road> roads;
 
+    private Obstacle log;
+
 
     @Before
     public void setUp() {
@@ -25,6 +27,7 @@ public class ThanhJunit {
         player = new Player("Easy", "testName", R.drawable.chicken);
         map = new Map("Easy", player);
         roads = map.getRoad();
+
 
     }
     @Test
@@ -122,6 +125,40 @@ public class ThanhJunit {
 
         assertEquals(crash, true);
         assertEquals(liveNum - 1, map.getPlayer().getLives());
+    }
+
+    @Test
+    public void checkMoveSpriteMoveLeftWithLog() {
+        log = new Obstacle(2,0, 1, 1, 1);
+        int live = map.getPlayer().getLives();
+        map.getPlayer().onLog(log);
+        boolean crash = true;
+        // move player on log off left screen
+        while (crash) {
+            if (!((log.getPos() % 8) != 0 || map.getPlayer().getPosX() == 0)) {
+                continue;
+            } else  {
+                crash = false;
+            }
+        };
+        assertEquals(crash, false);
+    }
+
+    @Test
+    public void checkMoveSpriteMoveRightWithLog() {
+        log = new Obstacle(6,0, 1, 1, -1);
+        int live = map.getPlayer().getLives();
+        map.getPlayer().onLog(log);
+        boolean crash = true;
+        // move player on log off left screen
+        while (crash) {
+            if (!((log.getPos() % 8) != 7 || map.getPlayer().getPosX() == 7)) {
+                continue;
+            } else  {
+                crash = false;
+            }
+        };
+        assertEquals(crash, false);
     }
 
 }

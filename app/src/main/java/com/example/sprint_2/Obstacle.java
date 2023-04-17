@@ -40,6 +40,14 @@ public class Obstacle {
 
     }
 
+    public int getPosX() {
+        return this.getPos() % gridHeight;
+    }
+
+    public int getPosY() {
+        return this.getPos() / gridHeight;
+    }
+
     public int getVelocity() {
         return velocity;
     }
