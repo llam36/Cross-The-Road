@@ -1,4 +1,4 @@
-package com.example.sprint_2;
+package com.example.CrossTheRoad;
 
 public class SafeTile extends Lane {
     public SafeTile() {

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.sprint_2'
+    namespace 'com.example.CrossTheRoad'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.sprint_2"
+        applicationId "com.example.CrossTheRoad"
         minSdk 24
         targetSdk 33
         versionCode 1

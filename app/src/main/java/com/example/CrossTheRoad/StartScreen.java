@@ -1,4 +1,4 @@
-package com.example.sprint_2;
+package com.example.CrossTheRoad;
 
 import android.content.Intent;
 import android.os.Bundle;

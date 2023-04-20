@@ -1,4 +1,4 @@
-package com.example.sprint_2;
+package com.example.CrossTheRoad;
 import java.sql.Timestamp;
 
 public class Obstacle {
