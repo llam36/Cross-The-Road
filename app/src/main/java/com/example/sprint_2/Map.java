@@ -2,8 +2,6 @@ package com.example.sprint_2;
 import java.util.ArrayList;
 
 public class Map {
-    //test
-
     private final Lane[] lanes;
     private Player player;
     private String difficulty;
